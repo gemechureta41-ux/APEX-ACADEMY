@@ -415,7 +415,6 @@
         window.onload = function() {
             renderModules(modulesData);
             renderQuizQuestion();
-            checkSavedSession();
         };
 
         // Tab Switcher with Strict Access Control
@@ -429,7 +428,6 @@
             document.getElementById('tab-' + tabId).classList.remove('hidden');
 
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('text-gold-500', 'font-bold'));
-            // Highlight active if needed
         }
 
         // Render Modules
@@ -609,7 +607,6 @@
                     openModal('bot-modal');
                 }
             } catch (err) {
-                // Fallback simulation mode if offline
                 setLoggedInUser(email);
                 closeModal('auth-modal');
             }
@@ -624,7 +621,6 @@
             document.getElementById('profile-email').innerText = email;
             document.getElementById('profile-avatar-big').innerText = email.slice(0, 2).toUpperCase();
 
-            // Show Admin button if admin email
             if (email.includes('admin') || email === 'gemechu@apex.com') {
                 document.getElementById('admin-nav-btn').classList.remove('hidden');
             }
@@ -638,10 +634,6 @@
             document.getElementById('user-avatar-badge').classList.add('hidden');
             document.getElementById('admin-nav-btn').classList.add('hidden');
             switchTab('home');
-        }
-
-        function checkSavedSession() {
-            // Auto check
         }
 
         // Telegram Bot Simulation Flow
