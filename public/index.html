@@ -58,6 +58,11 @@
         </div>
 
         <div class="flex items-center space-x-3">
+            <!-- DOWNLOAD CODE BUTTON -->
+            <button onclick="downloadIndexFile()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-2 rounded-xl transition flex items-center space-x-1.5 shadow-md">
+                <i class="fa-solid fa-download"></i> <span>Download Code</span>
+            </button>
+
             <div id="auth-header-btn">
                 <button onclick="openModal('auth-modal')" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-4 py-2 rounded-xl text-sm transition shadow-lg shadow-gold-500/10">
                     <i class="fa-solid fa-right-to-bracket mr-1"></i> VIP Login
@@ -92,9 +97,9 @@
                         <button onclick="switchTab('courses')" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-6 py-3 rounded-xl shadow-lg shadow-gold-500/20 transition flex items-center space-x-2">
                             <span>Explore 20 Modules</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
-                        <button onclick="openModal('bot-modal')" class="bg-borderDark hover:bg-gray-800 text-white font-semibold px-6 py-3 rounded-xl border border-gray-700 transition flex items-center space-x-2">
-                            <i class="fa-brands fa-telegram text-blue-400 text-lg"></i> <span>Join Telegram Bot</span>
-                        </button>
+                        <a href="https://t.me/apex_forex_assistant_bot" target="_blank" class="bg-borderDark hover:bg-gray-800 text-white font-semibold px-6 py-3 rounded-xl border border-gray-700 transition flex items-center space-x-2">
+                            <i class="fa-brands fa-telegram text-blue-400 text-lg"></i> <span>Open Telegram Bot</span>
+                        </a>
                     </div>
                 </div>
                 <!-- Stat Cards -->
@@ -232,7 +237,7 @@
                     </div>
                     <div class="flex justify-between text-gray-400">
                         <span>Telegram Bot Link:</span>
-                        <span class="text-blue-400 font-bold">@apex_forex_assistant_bot</span>
+                        <a href="https://t.me/apex_forex_assistant_bot" target="_blank" class="text-blue-400 hover:underline font-bold">@apex_forex_assistant_bot</a>
                     </div>
                     <div class="flex justify-between text-gray-400">
                         <span>Account Type:</span>
@@ -327,40 +332,9 @@
 
             <div class="bg-darkBg/50 border border-borderDark p-4 rounded-2xl text-center space-y-2">
                 <p class="text-xs text-gray-400">Don't have VIP access yet?</p>
-                <button onclick="closeModal('auth-modal'); openModal('bot-modal');" class="text-xs text-blue-400 hover:text-blue-300 font-bold flex items-center justify-center mx-auto space-x-1">
+                <a href="https://t.me/apex_forex_assistant_bot" target="_blank" class="text-xs text-blue-400 hover:text-blue-300 font-bold flex items-center justify-center mx-auto space-x-1">
                     <i class="fa-brands fa-telegram"></i> <span>Register via Telegram Bot (@apex_forex_assistant_bot)</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- TELEGRAM BOT SIMULATION MODAL -->
-    <div id="bot-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-borderDark rounded-3xl max-w-lg w-full p-6 lg:p-8 shadow-2xl space-y-6 relative">
-            <button onclick="closeModal('bot-modal')" class="absolute top-6 right-6 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            
-            <div class="flex items-center space-x-3 border-b border-borderDark pb-4">
-                <div class="w-12 h-12 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl"><i class="fa-brands fa-telegram"></i></div>
-                <div>
-                    <h3 class="font-bold text-white text-base">@apex_forex_assistant_bot</h3>
-                    <p class="text-xs text-emerald-400 font-semibold flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block mr-1.5"></span> Online Enrollment Bot</p>
-                </div>
-            </div>
-
-            <div id="bot-chat-stream" class="space-y-4 max-h-72 overflow-y-auto custom-scrollbar pr-2">
-                <!-- Bot Messages -->
-                <div class="bg-darkBg p-4 rounded-2xl border border-borderDark space-y-2">
-                    <p class="text-xs text-gray-300">✨ <b>Welcome to Apex Forex Academy Official Bot!</b><br>I am your automated enrollment assistant.</p>
-                    <p class="text-xs text-gold-400">Please enter your Email Address to begin registration:</p>
-                </div>
-            </div>
-
-            <!-- Bot Input Area -->
-            <div id="bot-input-area" class="space-y-3 pt-2">
-                <div class="flex space-x-2">
-                    <input type="email" id="bot-user-email" placeholder="Enter your email (e.g., student@gmail.com)" class="flex-grow bg-darkBg border border-borderDark rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
-                    <button onclick="botSubmitEmail()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition">Send</button>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -372,7 +346,19 @@
 
     <!-- JAVASCRIPT APP LOGIC -->
     <script>
-        // CURRICULUM DATA: 20 Modules with Professional YouTube Video Embeds
+        function downloadIndexFile() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
         const modulesData = [
             { id: 1, title: "Introduction to Forex Trading", lessons: [ { title: "What is Forex Trading?", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Forex (Foreign Exchange) is a global decentralized market where currencies are traded. Understand market participants, session times (London, New York, Tokyo), and structural basics." }, { title: "How Forex Market Works", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Learn currency quotation, bid/ask spreads, and how institutional liquidity providers match buy and sell orders globally." }, { title: "Currency Pairs, Pips, Lots & Spread", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Master calculation of pip values across major pairs (EURUSD, GBPUSD, XAUUSD) and lot sizing rules." } ] },
             { id: 2, title: "Forex Market Fundamentals", lessons: [ { title: "Bullish & Bearish Markets", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Identifying market sentiment, buyer vs seller dominance, and macroeconomic indicators driving currency strength." }, { title: "Candlestick Chart Reading", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Deep dive into open, high, low, and close prices forming Japanese candlesticks across various timeframes." } ] },
@@ -396,7 +382,6 @@
             { id: 20, title: "Trading Psychology & Journaling", lessons: [ { title: "Mastering Fear, Greed & Discipline", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Eliminating revenge trading, maintaining emotional detachment, and keeping a professional trading journal." } ] }
         ];
 
-        // Quiz Questions Data (English)
         const quizQuestions = [
             { q: "What does SMC stand for in institutional trading?", options: ["Simple Market Control", "Smart Money Concepts", "Secure Margin Calculation", "Systematic Moving Correlation"], answer: 1 },
             { q: "In EURUSD, which currency is the base currency?", options: ["USD", "EUR", "GBP", "JPY"], answer: 1 },
@@ -411,14 +396,11 @@
         let currentQuizIndex = 0;
         let userScore = 0;
 
-        // Initialize App UI on Load
         window.onload = function() {
             renderModules(modulesData);
             renderQuizQuestion();
-            checkSavedSession();
         };
 
-        // Tab Switcher with Strict Access Control
         function switchTab(tabId) {
             if (tabId !== 'home' && !currentUser) {
                 openModal('auth-modal');
@@ -429,10 +411,8 @@
             document.getElementById('tab-' + tabId).classList.remove('hidden');
 
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('text-gold-500', 'font-bold'));
-            // Highlight active if needed
         }
 
-        // Render Modules
         function renderModules(data) {
             const container = document.getElementById('modules-container');
             container.innerHTML = '';
@@ -475,7 +455,6 @@
             renderModules(filtered);
         }
 
-        // Lesson Player Modal
         function openLesson(modIdx, lesIdx) {
             if (!currentUser) {
                 openModal('auth-modal');
@@ -522,7 +501,6 @@
             }
         }
 
-        // Quiz Engine
         function renderQuizQuestion() {
             if (currentQuizIndex >= quizQuestions.length) {
                 const pass = (userScore / quizQuestions.length) >= 0.8;
@@ -573,7 +551,6 @@
             renderQuizQuestion();
         }
 
-        // Certificate Generation
         function unlockCertificate() {
             document.getElementById('cert-student-name').innerText = currentUser;
             document.getElementById('cert-date-issued').innerText = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
@@ -585,7 +562,6 @@
             alert(`🎉 Congratulations ${currentUser}! Your official Apex Forex Trading Certificate signed by Lead Instructor Gemechu Reta has been generated.`);
         }
 
-        // Authentication & Backend Status Check
         async function handleLoginSubmit(event) {
             event.preventDefault();
             const email = document.getElementById('login-email-input').value.trim();
@@ -606,10 +582,9 @@
                 } else {
                     alert('❌ VIP Access not found for this email. Please register via Telegram Bot @apex_forex_assistant_bot and transfer payment (Telebirr: 0917091612 | M-Pesa: 0717120607).');
                     closeModal('auth-modal');
-                    openModal('bot-modal');
+                    window.open('https://t.me/apex_forex_assistant_bot', '_blank');
                 }
             } catch (err) {
-                // Fallback simulation mode if offline
                 setLoggedInUser(email);
                 closeModal('auth-modal');
             }
@@ -624,7 +599,6 @@
             document.getElementById('profile-email').innerText = email;
             document.getElementById('profile-avatar-big').innerText = email.slice(0, 2).toUpperCase();
 
-            // Show Admin button if admin email
             if (email.includes('admin') || email === 'gemechu@apex.com') {
                 document.getElementById('admin-nav-btn').classList.remove('hidden');
             }
@@ -640,53 +614,6 @@
             switchTab('home');
         }
 
-        function checkSavedSession() {
-            // Auto check
-        }
-
-        // Telegram Bot Simulation Flow
-        let botState = { email: '' };
-
-        function botSubmitEmail() {
-            const email = document.getElementById('bot-user-email').value.trim();
-            if (!email || !email.includes('@')) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            botState.email = email;
-
-            const chatStream = document.getElementById('bot-chat-stream');
-            chatStream.innerHTML += `
-                <div class="text-right"><span class="inline-block bg-blue-600 text-white text-xs px-3 py-2 rounded-2xl">${email}</span></div>
-                <div class="bg-darkBg p-4 rounded-2xl border border-borderDark space-y-2">
-                    <p class="text-xs text-gray-300">✅ <b>Email Saved:</b> <code>${email}</code></p>
-                    <p class="text-xs text-gold-400">💳 <b>Payment Details for VIP Access:</b><br>Transfer registration fee to:</p>
-                    <p class="text-xs text-white">📱 <b>Telebirr:</b> <code>0917091612</code><br>📱 <b>M-Pesa:</b> <code>0717120607</code></p>
-                    <p class="text-xs text-gray-300">📌 <b>Next Step:</b> Upload/send your payment receipt screenshot here:</p>
-                </div>
-            `;
-
-            document.getElementById('bot-input-area').innerHTML = `
-                <div class="flex items-center space-x-2">
-                    <input type="file" id="bot-receipt-file" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gold-500 file:text-black hover:file:bg-gold-600">
-                    <button onclick="botSubmitReceipt()" class="bg-emerald-500 hover:bg-emerald-600 text-black font-bold px-4 py-2.5 rounded-xl text-xs transition">Upload</button>
-                </div>
-            `;
-        }
-
-        function botSubmitReceipt() {
-            const chatStream = document.getElementById('bot-chat-stream');
-            chatStream.innerHTML += `
-                <div class="text-right"><span class="inline-block bg-blue-600 text-white text-xs px-3 py-2 rounded-2xl">[Receipt Screenshot Uploaded]</span></div>
-                <div class="bg-darkBg p-4 rounded-2xl border border-borderDark space-y-2">
-                    <p class="text-xs text-emerald-400 font-bold">✅ Payment Proof Received Successfully!</p>
-                    <p class="text-xs text-gray-300">Your registration ID has been submitted to the Admin Portal (Lead Instructor: Gemechu Reta). Please wait while your transaction is verified.</p>
-                </div>
-            `;
-            document.getElementById('bot-input-area').innerHTML = `<p class="text-xs text-center text-emerald-400 font-bold"><i class="fa-solid fa-check-circle"></i> Verification Pending. You will be notified once approved!</p>`;
-        }
-
-        // Admin Portal Loader
         async function loadAdminRequests() {
             const listContainer = document.getElementById('admin-requests-list');
             listContainer.innerHTML = `<p class="text-xs text-gray-400">Loading pending requests from server...</p>`;
@@ -740,7 +667,6 @@
             loadAdminRequests();
         }
 
-        // Modal Helpers
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
     </script>
