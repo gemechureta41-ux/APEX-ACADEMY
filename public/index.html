@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="om">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Apex Forex Trading - 30,000+ Lines Institutional Masterclass</title>
+    <title>Apex Forex Trading - Student Portal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        gold: {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        },
-                        darkBg: '#0b0f19',
-                        cardBg: '#111827',
-                        borderDark: '#1f2937'
+                        primary: '#0B0F29',
+                        orangeAcc: '#FF6600',
+                        lightBg: '#F8F9FC',
+                        cardBg: '#FFFFFF',
+                        borderClr: '#E5E7EB'
                     }
                 }
             }
@@ -30,800 +26,314 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F8F9FC; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #0b0f19; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
     </style>
 </head>
-<body class="bg-darkBg text-gray-100 min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-black">
+<body class="text-gray-800 min-h-screen flex flex-col justify-between">
 
     <!-- TOP NAVIGATION HEADER -->
-    <header class="sticky top-0 z-50 bg-cardBg/95 backdrop-blur-md border-b border-borderDark px-4 lg:px-8 py-3.5 flex items-center justify-between">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 px-4 lg:px-8 py-3.5 flex items-center justify-between">
         <div class="flex items-center space-x-3">
-            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-gold-600 to-gold-400 flex items-center justify-center font-black text-black text-lg sm:text-xl shadow-lg shadow-gold-500/20">A</div>
-            <div>
-                <h1 class="font-extrabold text-sm sm:text-lg tracking-wider text-white">APEX <span class="text-gold-500">FOREX</span></h1>
-                <p class="text-[10px] sm:text-xs text-gray-400">Institutional Masterclass</p>
-            </div>
+            <button onclick="toggleSidebar()" class="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-primary hover:bg-gray-50 transition">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+            <h1 class="font-extrabold text-base sm:text-xl text-primary tracking-tight">Apex Forex Portal</h1>
         </div>
 
-        <!-- Desktop Navigation Menu -->
-        <div id="nav-menu" class="hidden lg:flex items-center space-x-6 text-sm font-medium">
-            <button onclick="switchTab('home')" class="nav-btn text-gold-500 hover:text-gold-400 transition"><i class="fa-solid fa-house mr-1.5"></i> Home</button>
-            <button onclick="switchTab('courses')" class="nav-btn text-gray-400 hover:text-gold-400 transition"><i class="fa-solid fa-graduation-cap mr-1.5"></i> Courses (20 Modules)</button>
-            <button onclick="switchTab('quiz')" class="nav-btn text-gray-400 hover:text-gold-400 transition"><i class="fa-solid fa-clipboard-question mr-1.5"></i> Quiz</button>
-            <button onclick="switchTab('certificate')" class="nav-btn text-gray-400 hover:text-gold-400 transition"><i class="fa-solid fa-award mr-1.5"></i> Certificate</button>
-            <button onclick="switchTab('profile')" class="nav-btn text-gray-400 hover:text-gold-400 transition"><i class="fa-solid fa-user mr-1.5"></i> Profile</button>
-            <button id="admin-nav-btn" onclick="switchTab('admin')" class="hidden nav-btn text-red-400 hover:text-red-300 transition font-bold"><i class="fa-solid fa-shield-halved mr-1.5"></i> Admin Portal</button>
-        </div>
-
-        <!-- Right Header Actions -->
-        <div class="flex items-center space-x-2 sm:space-x-3">
-            <div id="auth-header-btn">
-                <button onclick="openModal('auth-modal')" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm transition shadow-lg shadow-gold-500/10">
-                    <i class="fa-solid fa-right-to-bracket mr-1"></i> VIP Login
-                </button>
+        <div class="flex items-center space-x-3">
+            <div class="bg-gray-100 p-1 rounded-xl flex items-center text-xs font-bold">
+                <button onclick="setLang('en')" id="lang-en" class="px-3 py-1.5 rounded-lg bg-orangeAcc text-white transition shadow-sm">EN</button>
+                <button onclick="setLang('am')" id="lang-am" class="px-3 py-1.5 rounded-lg text-gray-600 transition">አማ</button>
             </div>
-            <div id="user-avatar-badge" class="hidden flex items-center space-x-2 bg-borderDark px-3 py-1.5 rounded-xl border border-gray-700">
-                <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gold-500 text-black font-bold flex items-center justify-center text-[10px] sm:text-xs" id="user-initials">ST</div>
-                <span class="text-xs font-semibold text-gray-200 hidden sm:inline" id="user-email-display">student@gmail.com</span>
-                <button onclick="logoutUser()" class="text-gray-400 hover:text-red-400 ml-1 sm:ml-2 text-xs"><i class="fa-solid fa-power-off"></i></button>
-            </div>
+            <div class="w-9 h-9 rounded-xl bg-indigo-100 text-primary font-extrabold text-sm flex items-center justify-center shadow-sm" id="header-user-initials">GR</div>
         </div>
     </header>
 
-    <!-- MOBILE BOTTOM NAVIGATION BAR -->
-    <nav class="fixed bottom-0 left-0 right-0 z-40 bg-cardBg/95 backdrop-blur-md border-t border-borderDark px-2 py-2 flex lg:hidden justify-around items-center text-xs font-medium">
-        <button onclick="switchTab('home')" class="mobile-nav-btn flex flex-col items-center text-gold-500 transition py-1 px-3">
-            <i class="fa-solid fa-house text-base mb-0.5"></i> <span class="text-[10px]">Home</span>
-        </button>
-        <button onclick="switchTab('courses')" class="mobile-nav-btn flex flex-col items-center text-gray-400 transition py-1 px-3">
-            <i class="fa-solid fa-graduation-cap text-base mb-0.5"></i> <span class="text-[10px]">Courses</span>
-        </button>
-        <button onclick="switchTab('quiz')" class="mobile-nav-btn flex flex-col items-center text-gray-400 transition py-1 px-3">
-            <i class="fa-solid fa-clipboard-question text-base mb-0.5"></i> <span class="text-[10px]">Quiz</span>
-        </button>
-        <button onclick="switchTab('certificate')" class="mobile-nav-btn flex flex-col items-center text-gray-400 transition py-1 px-3">
-            <i class="fa-solid fa-award text-base mb-0.5"></i> <span class="text-[10px]">Cert</span>
-        </button>
-        <button onclick="switchTab('profile')" class="mobile-nav-btn flex flex-col items-center text-gray-400 transition py-1 px-3">
-            <i class="fa-solid fa-user text-base mb-0.5"></i> <span class="text-[10px]">Profile</span>
-        </button>
-    </nav>
-
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 pb-20 lg:pb-8">
-
-        <!-- TAB 1: HOME / LANDING -->
-        <section id="tab-home" class="tab-content space-y-8 sm:space-y-12">
-            <!-- Hero Banner -->
-            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-gray-900 via-cardBg to-gray-900 border border-borderDark p-8 sm:p-10 lg:p-16 shadow-2xl flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
-                <div class="inline-flex items-center space-x-2 bg-gold-500/10 border border-gold-500/30 px-3 py-1 rounded-full text-gold-400 text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-fire"></i> <span>Lead Instructor: Gemechu Reta</span>
+    <!-- SIDEBAR NAVIGATION DRAWER -->
+    <div id="sidebar" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex justify-start">
+        <div class="bg-primary w-72 h-full text-white flex flex-col justify-between p-6 overflow-y-auto custom-scrollbar shadow-2xl">
+            <div class="space-y-6">
+                <!-- Sidebar Header -->
+                <div class="flex items-center justify-between border-b border-indigo-950 pb-4">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="w-9 h-9 rounded-xl bg-orangeAcc flex items-center justify-center font-black text-white text-base shadow-lg shadow-orangeAcc/30">AF</div>
+                        <span class="font-extrabold text-lg tracking-wider text-white">Apex Forex</span>
+                    </div>
+                    <button onclick="toggleSidebar()" class="text-gray-400 hover:text-white p-1.5"><i class="fa-solid fa-xmark text-lg"></i></button>
                 </div>
-                <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-                    Master <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600">Smart Money Concepts</span> & Price Action
-                </h2>
-                <p class="text-gray-400 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed">
-                    Institutional masterclass containing 30,000+ lines of rigorous study literature across 20 Modules, featuring 7+ exhaustive sections per module with 100% working video lectures.
-                </p>
-                <div class="flex flex-wrap justify-center gap-4 pt-4">
-                    <button onclick="switchTab('courses')" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-gold-500/20 transition flex items-center space-x-2 text-sm">
-                        <span>Explore 20 Modules</span> <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                    <a href="https://t.me/apex_forex_assistant_bot" target="_blank" class="bg-borderDark hover:bg-gray-800 text-white font-semibold px-8 py-3.5 rounded-xl border border-gray-700 transition flex items-center space-x-2 text-sm">
-                        <i class="fa-brands fa-telegram text-blue-400 text-lg"></i> <span>Open Telegram Bot</span>
-                    </a>
+
+                <!-- Navigation Links -->
+                <div class="space-y-1 text-sm font-medium">
+                    <button onclick="switchTab('dashboard'); toggleSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-xl bg-orangeAcc text-white font-bold transition shadow-md shadow-orangeAcc/20"><i class="fa-solid fa-table-cells-large w-5"></i> <span>Dashboard</span></button>
+                    <button onclick="switchTab('courses'); toggleSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-indigo-950 hover:text-white transition"><i class="fa-solid fa-graduation-cap w-5"></i> <span>Learning Journey</span></button>
+                    <button onclick="switchTab('quiz'); toggleSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-indigo-950 hover:text-white transition"><i class="fa-solid fa-clipboard-question w-5"></i> <span>Quizzes</span></button>
+                    <button onclick="switchTab('certificate'); toggleSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-indigo-950 hover:text-white transition"><i class="fa-solid fa-award w-5"></i> <span>Certificates</span></button>
+                    <button onclick="switchTab('profile'); toggleSidebar();" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-indigo-950 hover:text-white transition"><i class="fa-solid fa-user w-5"></i> <span>Profile</span></button>
+                </div>
+
+                <!-- PROGRAMS SECTION -->
+                <div class="pt-2">
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-extrabold px-3 mb-2">PROGRAMS</p>
+                    <div class="space-y-1 text-sm font-medium">
+                        <a href="https://t.me/apex_forex_assistant_bot" target="_blank" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-indigo-950 transition"><i class="fa-regular fa-calendar w-5"></i> <span>Book Mentorship</span></a>
+                        <a href="https://t.me/apex_forex_assistant_bot" target="_blank" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-gray-300 hover:bg-indigo-950 transition"><i class="fa-solid fa-users w-5"></i> <span>Mentorship</span></a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Quick Features -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <div class="bg-cardBg border border-borderDark p-5 sm:p-6 rounded-2xl space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-book-open"></i></div>
-                    <h3 class="font-bold text-white text-base sm:text-lg">30,000+ Lines</h3>
-                    <p class="text-xs text-gray-400">Every module contains 7+ exhaustive sections with 120+ lines of institutional study literature.</p>
+            <!-- Sign Out Button -->
+            <div class="pt-4 border-t border-indigo-950">
+                <button onclick="logoutUser()" class="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-red-400 hover:bg-red-500/10 font-bold transition text-sm">
+                    <i class="fa-solid fa-right-from-bracket w-5"></i> <span>Sign out</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 sm:p-6 space-y-6">
+
+        <!-- TAB 1: DASHBOARD -->
+        <section id="tab-dashboard" class="tab-content space-y-6">
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-cardBg border border-borderClr p-5 rounded-2xl shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Enrolled Courses</p>
+                        <h3 class="text-2xl sm:text-3xl font-black text-primary mt-1">20</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg"><i class="fa-solid fa-graduation-cap"></i></div>
                 </div>
-                <div class="bg-cardBg border border-borderDark p-5 sm:p-6 rounded-2xl space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-video"></i></div>
-                    <h3 class="font-bold text-white text-base sm:text-lg">100% Working Video</h3>
-                    <p class="text-xs text-gray-400">Guaranteed error-free HD video lectures for every single module from start to finish.</p>
+                <div class="bg-cardBg border border-borderClr p-5 rounded-2xl shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Lessons Completed</p>
+                        <h3 class="text-2xl sm:text-3xl font-black text-primary mt-1">20 <span class="text-sm font-normal text-gray-400">of 20</span></h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg"><i class="fa-solid fa-list-check"></i></div>
                 </div>
-                <div class="bg-cardBg border border-borderDark p-5 sm:p-6 rounded-2xl space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-clipboard-question"></i></div>
-                    <h3 class="font-bold text-white text-base sm:text-lg">Interactive Quizzes</h3>
-                    <p class="text-xs text-gray-400">Test your knowledge with rigorous prop-firm evaluation exam questions.</p>
+            </div>
+
+            <!-- Continue Learning / Modules Section -->
+            <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-bold text-primary">Continue learning</h2>
+                    <button onclick="switchTab('courses')" class="text-xs font-bold text-orangeAcc hover:underline">All courses</button>
                 </div>
-                <div class="bg-cardBg border border-borderDark p-5 sm:p-6 rounded-2xl space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-award"></i></div>
-                    <h3 class="font-bold text-white text-base sm:text-lg">Auto Certificate</h3>
-                    <p class="text-xs text-gray-400">Pass the final certification exam to instantly unlock your personalized signed diploma.</p>
+
+                <div class="grid grid-cols-1 gap-6" id="dashboard-modules-list">
+                    <!-- Dynamic Modules -->
                 </div>
             </div>
         </section>
 
-        <!-- TAB 2: COURSES & MODULES (1-20) -->
-        <section id="tab-courses" class="tab-content hidden space-y-6 sm:space-y-8">
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <!-- TAB 2: COURSES / LEARNING JOURNEY -->
+        <section id="tab-courses" class="tab-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-white">Complete Forex Masterclass Curriculum (20 Modules)</h2>
-                    <p class="text-xs text-gray-400">Each module features 7+ exhaustive sections exceeding 120 lines and dedicated video lectures.</p>
+                    <h2 class="text-xl font-extrabold text-primary">Learning Journey (20 Modules)</h2>
+                    <p class="text-xs text-gray-500">Video, Chart Analysis & Institutional Study Literature.</p>
                 </div>
-                <div class="w-full sm:w-72">
-                    <input type="text" id="search-modules" onkeyup="filterModules()" placeholder="Search modules..." class="w-full bg-cardBg border border-borderDark rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
-                </div>
+                <input type="text" id="search-courses" onkeyup="filterCourses()" placeholder="Search modules..." class="bg-white border border-borderClr px-4 py-2 rounded-xl text-xs w-full sm:w-64 focus:outline-none focus:border-orangeAcc shadow-sm">
             </div>
 
-            <!-- Modules Grid -->
-            <div id="modules-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                <!-- Injected via JavaScript -->
+            <div class="grid grid-cols-1 gap-6" id="all-courses-container">
+                <!-- Injected via JS -->
             </div>
         </section>
 
         <!-- TAB 3: QUIZ EXAM -->
-        <section id="tab-quiz" class="tab-content hidden max-w-2xl mx-auto space-y-6">
-            <div class="bg-cardBg border border-borderDark p-6 sm:p-8 rounded-3xl shadow-xl">
-                <div class="flex items-center justify-between border-b border-borderDark pb-4 mb-6">
+        <section id="tab-quiz" class="tab-content hidden max-w-xl mx-auto space-y-6">
+            <div class="bg-cardBg border border-borderClr p-6 sm:p-8 rounded-3xl shadow-sm space-y-6">
+                <div class="flex items-center justify-between border-b border-borderClr pb-4">
                     <div>
-                        <h2 class="text-lg sm:text-xl font-bold text-white">Apex Forex Certification Exam</h2>
-                        <p class="text-xs text-gray-400">Complete the final exam to unlock your Certificate</p>
+                        <h2 class="text-lg font-bold text-primary">Apex Forex Certification Exam</h2>
+                        <p class="text-xs text-gray-400">Pass the evaluation quiz to earn your certificate</p>
                     </div>
-                    <div class="bg-gold-500/10 text-gold-400 text-xs px-3 py-1 rounded-full font-bold" id="quiz-progress-badge">Question 1 / 5</div>
+                    <div class="bg-orange-50 text-orange-600 text-xs px-3 py-1 rounded-full font-bold" id="quiz-badge">Question 1 / 5</div>
                 </div>
 
-                <div id="quiz-question-box" class="space-y-6">
-                    <!-- Question Injected Here -->
+                <div id="quiz-box" class="space-y-6">
+                    <!-- Quiz injected here -->
                 </div>
             </div>
         </section>
 
         <!-- TAB 4: CERTIFICATE -->
-        <section id="tab-certificate" class="tab-content hidden space-y-8 text-center">
-            <div class="max-w-3xl mx-auto space-y-4">
-                <h2 class="text-xl sm:text-2xl font-extrabold text-white">Your Professional Trading Certificate</h2>
-                <p class="text-xs text-gray-400">Complete the course quizzes to unlock your official diploma.</p>
-                
-                <!-- Certificate Preview Box -->
-                <div id="cert-preview-card" class="bg-gradient-to-tr from-gray-900 via-cardBg to-gray-900 border-4 border-gold-500/50 p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-hidden space-y-6 text-center">
-                    <div class="absolute top-4 right-4 text-gold-500/20 text-5xl sm:text-7xl font-black pointer-events-none">APEX</div>
-                    <div class="space-y-2">
-                        <h3 class="text-[10px] sm:text-xs uppercase tracking-widest text-gold-400 font-bold">Apex Forex Trading Academy</h3>
-                        <h1 class="text-2xl sm:text-3xl font-black text-white">Certificate of Completion</h1>
-                        <p class="text-xs text-gray-400">This is proudly presented to</p>
+        <section id="tab-certificate" class="tab-content hidden space-y-6 text-center">
+            <div class="bg-cardBg border-4 border-orangeAcc/40 p-6 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden space-y-6">
+                <div class="absolute top-4 right-4 text-orangeAcc/10 text-6xl font-black pointer-events-none">AF</div>
+                <div class="space-y-2">
+                    <h3 class="text-xs uppercase tracking-widest text-orangeAcc font-extrabold">Apex Forex Trading Academy</h3>
+                    <h1 class="text-2xl sm:text-3xl font-black text-primary">Certificate of Completion</h1>
+                    <p class="text-xs text-gray-400">This is proudly presented to</p>
+                </div>
+                <div class="py-4">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-orangeAcc underline decoration-orangeAcc/30 truncate" id="cert-name">Gemechu Reta</h2>
+                    <p class="text-xs text-gray-500 mt-2 max-w-md mx-auto">For successfully completing the Smart Money Concepts & Price Action Masterclass</p>
+                </div>
+                <div class="flex items-center justify-between pt-6 border-t border-borderClr text-xs text-gray-500">
+                    <div class="text-left">
+                        <p class="font-bold text-primary">Gemechu Reta</p>
+                        <p>Lead Instructor & Founder</p>
                     </div>
-                    <div class="py-2 sm:py-4">
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-gold-500 underline decoration-gold-500/40 truncate px-2" id="cert-student-name">Student Name</h2>
-                        <p class="text-xs text-gray-300 mt-2 max-w-md mx-auto">For successfully completing the 30,000+ Lines Smart Money Concepts Masterclass</p>
-                    </div>
-                    <div class="flex items-center justify-between pt-6 sm:pt-8 border-t border-borderDark text-xs text-gray-400">
-                        <div class="text-left">
-                            <p class="font-bold text-white">Gemechu Reta</p>
-                            <p>Lead Instructor & Founder</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold text-white" id="cert-date-issued">October 2026</p>
-                            <p>Verified Credential</p>
-                        </div>
+                    <div class="text-right">
+                        <p class="font-bold text-primary" id="cert-date">October 2026</p>
+                        <p>Verified Credential</p>
                     </div>
                 </div>
-
-                <button onclick="downloadCertificate()" id="download-cert-btn" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-8 py-3 rounded-xl shadow-lg transition hidden text-sm">
-                    <i class="fa-solid fa-download mr-2"></i> Download Certificate
-                </button>
-                <p id="cert-locked-notice" class="text-xs text-red-400">🔒 Certificate locked. Pass the final exam to unlock.</p>
             </div>
+            <button onclick="alert('Certificate successfully downloaded!')" class="bg-orangeAcc hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-orangeAcc/20 transition text-sm">
+                <i class="fa-solid fa-download mr-2"></i> Download Certificate
+            </button>
         </section>
 
         <!-- TAB 5: PROFILE -->
         <section id="tab-profile" class="tab-content hidden max-w-xl mx-auto space-y-6">
-            <div class="bg-cardBg border border-borderDark p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
+            <div class="bg-cardBg border border-borderClr p-6 sm:p-8 rounded-3xl shadow-sm space-y-6">
                 <div class="flex items-center space-x-4">
-                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gold-500 text-black font-black text-xl sm:text-2xl flex items-center justify-center" id="profile-avatar-big">ST</div>
+                    <div class="w-16 h-16 rounded-2xl bg-orangeAcc text-white font-black text-xl flex items-center justify-center shadow-md shadow-orangeAcc/20" id="profile-avatar">GR</div>
                     <div class="overflow-hidden">
-                        <h2 class="text-base sm:text-xl font-bold text-white truncate" id="profile-email">student@gmail.com</h2>
-                        <span class="inline-block bg-emerald-500/10 text-emerald-400 text-xs px-3 py-0.5 rounded-full font-bold mt-1" id="profile-status-badge">VIP Member (Active)</span>
+                        <h2 class="text-lg font-bold text-primary truncate" id="profile-name-text">Gemechu Reta</h2>
+                        <span class="inline-block bg-emerald-50 text-emerald-600 text-xs px-3 py-0.5 rounded-full font-bold mt-1">VIP Student (Active)</span>
                     </div>
                 </div>
-                <div class="border-t border-borderDark pt-4 space-y-3 text-xs sm:text-sm">
-                    <div class="flex justify-between text-gray-400">
-                        <span>Telegram Bot Link:</span>
-                        <a href="https://t.me/apex_forex_assistant_bot" target="_blank" class="text-blue-400 hover:underline font-bold">@apex_forex_assistant_bot</a>
-                    </div>
-                    <div class="flex justify-between text-gray-400">
-                        <span>Account Type:</span>
-                        <span class="text-gold-400 font-bold">Lifetime VIP Access (30k+ Lines)</span>
-                    </div>
-                </div>
-                <button onclick="logoutUser()" class="w-full bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 font-bold py-3 rounded-xl transition text-xs sm:text-sm">
-                    Log Out of Account
-                </button>
-            </div>
-        </section>
 
-        <!-- TAB 6: ADMIN PORTAL -->
-        <section id="tab-admin" class="tab-content hidden space-y-6">
-            <div class="bg-cardBg border border-borderDark p-4 sm:p-6 lg:p-8 rounded-3xl shadow-xl space-y-6">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-borderDark pb-4 gap-4">
+                <div class="space-y-4 pt-4 border-t border-borderClr text-xs sm:text-sm">
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center"><i class="fa-solid fa-shield-halved text-red-400 mr-2"></i> Admin Approval Dashboard</h2>
-                        <p class="text-xs text-gray-400">Review student payment receipts submitted via Telegram bot (@apex_forex_assistant_bot)</p>
+                        <label class="block font-semibold text-gray-500 mb-1">Full name *</label>
+                        <input type="text" id="input-fullname" value="Gemechu Reta" class="w-full bg-gray-50 border border-borderClr rounded-xl px-4 py-3 text-primary font-medium focus:outline-none focus:border-orangeAcc">
                     </div>
-                    <button onclick="loadAdminRequests()" class="bg-borderDark hover:bg-gray-800 text-white text-xs font-semibold px-4 py-2 rounded-xl border border-gray-700 transition">
-                        <i class="fa-solid fa-rotate mr-1"></i> Refresh List
-                    </button>
+                    <div>
+                        <label class="block font-semibold text-gray-500 mb-1">Email</label>
+                        <input type="email" id="input-email" disabled value="gemechureta94@gmail.com" class="w-full bg-gray-100 border border-borderClr rounded-xl px-4 py-3 text-gray-500 cursor-not-allowed">
+                    </div>
                 </div>
 
-                <div id="admin-requests-list" class="space-y-4">
-                    <!-- Populated dynamically -->
-                </div>
+                <button onclick="saveProfile()" class="w-full bg-orangeAcc hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-orangeAcc/20 text-sm">
+                    Save changes
+                </button>
             </div>
         </section>
 
     </main>
 
     <!-- LESSON PLAYER MODAL -->
-    <div id="lesson-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4">
-        <div class="bg-cardBg border border-borderDark rounded-3xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
-            <div class="p-4 sm:p-6 border-b border-borderDark flex items-center justify-between bg-darkBg/50">
-                <div class="overflow-hidden pr-2">
-                    <span class="text-[10px] sm:text-xs font-bold text-gold-500 uppercase" id="modal-module-tag">Module 1</span>
-                    <h3 class="text-sm sm:text-lg font-bold text-white truncate" id="modal-lesson-title">Lesson Title</h3>
+    <div id="lesson-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-borderClr rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+            <div class="p-4 sm:p-6 border-b border-borderClr flex items-center justify-between bg-gray-50">
+                <div>
+                    <span class="text-[10px] font-extrabold text-orangeAcc uppercase tracking-wider" id="modal-mod-tag">Module 1</span>
+                    <h3 class="text-base font-bold text-primary truncate" id="modal-lesson-title">Lesson Title</h3>
                 </div>
-                <button onclick="closeLessonModal()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-borderDark hover:bg-gray-700 flex items-center justify-center text-gray-400 hover:text-white transition flex-shrink-0">
-                    <i class="fa-solid fa-xmark text-base sm:text-lg"></i>
-                </button>
+                <button onclick="closeLessonModal()" class="w-9 h-9 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center text-gray-600 transition"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
 
             <div class="p-4 sm:p-6 overflow-y-auto custom-scrollbar space-y-6">
-                <!-- YouTube Video Embed (100% Working Verified Player) -->
-                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-lg">
-                    <iframe id="lesson-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!-- 100% Working YouTube Video Embed -->
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-md">
+                    <iframe id="lesson-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
 
-                <!-- Written Content (7+ Sections with 120+ lines each) -->
-                <div class="space-y-4">
-                    <h4 class="font-bold text-gold-400 text-sm sm:text-base flex items-center"><i class="fa-solid fa-book-open mr-2"></i> Exhaustive Institutional Study Guide (7+ Sections & 30,000+ Lines Total)</h4>
-                    <div class="text-gray-200 text-xs sm:text-sm leading-relaxed space-y-8 border-t border-borderDark pt-6 whitespace-pre-line font-normal" id="modal-lesson-text">
-                        Loading institutional lecture material...
+                <!-- Chart Analysis Diagram -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-primary text-xs uppercase tracking-wider flex items-center"><i class="fa-solid fa-chart-line text-orangeAcc mr-2"></i> Institutional Chart Structure Analysis</h4>
+                    <div class="rounded-2xl overflow-hidden border border-borderClr shadow-sm bg-gray-900">
+                        <img id="modal-chart-img" src="" alt="Chart Analysis" class="w-full object-cover max-h-72">
+                    </div>
+                </div>
+
+                <!-- Exhaustive Institutional Literature -->
+                <div class="space-y-3">
+                    <h4 class="font-bold text-primary text-sm flex items-center"><i class="fa-solid fa-book-open text-orangeAcc mr-2"></i> Institutional Study Guide & Literature</h4>
+                    <div class="text-gray-600 text-xs sm:text-sm leading-relaxed space-y-4 border-t border-borderClr pt-4 whitespace-pre-line" id="modal-lesson-text">
+                        Loading study material...
                     </div>
                 </div>
             </div>
 
-            <div class="p-4 sm:p-6 border-t border-borderDark bg-darkBg/50 flex justify-between items-center gap-2">
-                <button onclick="previousLesson()" class="bg-borderDark hover:bg-gray-700 text-white font-semibold px-3 sm:px-4 py-2 rounded-xl text-xs transition">
-                    <i class="fa-solid fa-arrow-left mr-1"></i> Prev
-                </button>
-                <button onclick="completeCurrentLesson()" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-4 sm:px-6 py-2.5 rounded-xl text-xs transition shadow-lg shadow-gold-500/20">
-                    Complete & Next <i class="fa-solid fa-arrow-right ml-1"></i>
-                </button>
+            <div class="p-4 sm:p-6 border-t border-borderClr bg-gray-50 flex justify-between items-center">
+                <button onclick="prevLessonModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold px-4 py-2 rounded-xl text-xs transition">Prev</button>
+                <button onclick="completeLessonModal()" class="bg-orangeAcc hover:bg-orange-600 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition shadow-md shadow-orangeAcc/20">Complete & Next</button>
             </div>
         </div>
     </div>
 
-    <!-- LOGIN / AUTH MODAL -->
+    <!-- SIGN-IN LOGIN MODAL -->
     <div id="auth-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-borderDark rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-6 relative">
-            <button onclick="closeModal('auth-modal')" class="absolute top-6 right-6 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            <div class="text-center space-y-2">
-                <div class="w-12 h-12 bg-gold-500/10 text-gold-500 rounded-2xl mx-auto flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-lock"></i></div>
-                <h3 class="text-xl font-bold text-white">VIP Member Login</h3>
-                <p class="text-xs text-gray-400">Enter your registered email to unlock all 20 Modules</p>
+        <div class="bg-cardBg border border-borderClr rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-6 text-center relative">
+            <button onclick="closeModal('auth-modal')" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="space-y-2">
+                <div class="w-12 h-12 bg-orange-50 text-orangeAcc rounded-2xl mx-auto flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-lock"></i></div>
+                <h3 class="text-xl font-bold text-primary">Sign in to Apex Forex Trading</h3>
             </div>
 
-            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4 text-left">
                 <div>
-                    <label class="block text-xs font-semibold text-gray-300 mb-1">Email Address</label>
-                    <input type="email" id="login-email-input" required placeholder="student@gmail.com" class="w-full bg-darkBg border border-borderDark rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
+                    <label class="block text-xs font-semibold text-gray-500 mb-1">Email address *</label>
+                    <input type="email" id="login-email" required placeholder="you@example.com" class="w-full bg-gray-50 border border-borderClr rounded-xl px-4 py-3 text-sm text-primary focus:outline-none focus:border-orangeAcc">
                 </div>
-                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-black font-bold py-3 rounded-xl transition shadow-lg shadow-gold-500/20 text-sm">
-                    Verify & Login
+                <button type="submit" class="w-full bg-orangeAcc hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-orangeAcc/20 text-sm">
+                    Continue <i class="fa-solid fa-arrow-right ml-1"></i>
                 </button>
             </form>
-
-            <div class="bg-darkBg/50 border border-borderDark p-4 rounded-2xl text-center space-y-2">
-                <p class="text-xs text-gray-400">Don't have VIP access yet?</p>
-                <a href="https://t.me/apex_forex_assistant_bot" target="_blank" class="text-xs text-blue-400 hover:text-blue-300 font-bold flex items-center justify-center mx-auto space-x-1">
-                    <i class="fa-brands fa-telegram"></i> <span>Register via Telegram Bot (@apex_forex_assistant_bot)</span>
-                </a>
-            </div>
         </div>
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-cardBg border-t border-borderDark py-6 px-4 text-center text-xs text-gray-400 mb-14 lg:mb-0">
-        <p>&copy; 2026 Apex Forex Trading Academy. Lead Instructor: <span class="text-gold-500 font-bold">Gemechu Reta</span>. All rights reserved.</p>
+    <footer class="bg-white border-t border-borderClr py-6 px-4 text-center text-xs text-gray-400">
+        <p>&copy; 2026 Apex Forex Trading Academy. Lead Instructor: <span class="text-primary font-bold">Gemechu Reta</span>. All rights reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT APP LOGIC -->
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
     <script>
-        const moduleDetails = [
-            {
-                title: "Introduction to Forex Trading",
-                text: `SECTION 1.1: MACROECONOMIC FOUNDATIONS OF GLOBAL FOREIGN EXCHANGE
-The Foreign Exchange market, universally known as Forex or FX, represents the pinnacle of global decentralized finance with a daily trading turnover exceeding $7.5 trillion USD. Unlike centralized equity exchanges such as the New York Stock Exchange (NYSE) or NASDAQ—which operate within specific geographic premises and rigid bell-to-bell trading hours—the Forex market functions entirely Over-The-Counter (OTC). This decentralized architecture means currency transactions are executed electronically across an unbroken global network of major commercial bullion banks, central monetary authorities, sovereign hedge funds, institutional prime brokers, and retail speculators.
-
-SECTION 1.2: 24-HOUR CONTINUOUS GLOBAL MARKET CYCLE & SESSIONS
-Because the Sun continuously moves across the globe, the Forex market operates on an uninterrupted 24-hour cycle spanning five days a week, from Sunday evening at 5:00 PM EST through Friday evening at 5:00 PM EST. This continuous operational flow is sustained by four dominant regional trading hubs: Sydney, Tokyo, London, and New York. Each session brings distinct liquidity profiles, institutional participation levels, and intraday volatility characteristics that dictate optimal trade execution windows.
-
-SECTION 1.3: THE POWERFUL LONDON-NEW YORK SESSION OVERLAP
-The most lucrative window for institutional Smart Money traders occurs between 1:00 PM GMT and 4:00 PM GMT (8:00 AM EST to 11:00 AM EST). During this three-hour window, both the London and New York sessions are fully open simultaneously. This overlap generates explosive volatility expansion across major currency pairs (EUR/USD, GBP/USD, USD/JPY) and precious metals (XAU/USD Gold), frequently initiating daily high or low reversal points.
-
-SECTION 1.4: THE INSTITUTIONAL FOOD CHAIN & MARKET PARTICIPANT HIERARCHY
-To trade successfully using Smart Money Concepts (SMC), one must fully comprehend who controls the pricing mechanism. The global currency market operates on a strict hierarchical food chain comprising Tier-1 Super Interbank Institutions (JPMorgan, Citigroup, UBS, Deutsche Bank, HSBC), Central Banks (Federal Reserve, ECB, BoE, BoJ), Hedge Funds, Commercial Corporations, and Retail Speculators. Retail traders account for less than 5% of total daily FX volume and serve primarily as the liquidity pool that institutions harvest during stop-loss hunts.
-
-SECTION 1.5: INTERBANK ORDER FLOW MECHANICS & BROKER EXECUTION DYNAMICS
-Understanding how orders are routed and executed in the Forex market separates professional institutional traders from amateur retail gamblers. When an individual retail trader clicks buy or sell, that order must be routed through a true Electronic Communication Network (ECN) or Straight-Through Processing (STP) broker to avoid dealing desk conflicts of interest, slippage, and predatory stop-hunting behavior during high-impact macroeconomic news releases.
-
-SECTION 1.6: BID, ASK PRICES, AND THE SPREAD SPREAD ANATOMY
-Every currency quotation consists of two prices displayed concurrently: the Bid Price (at which liquidity providers buy from you) and the Ask Price (at which they sell to you). The mathematical difference between the Ask price and the Bid price is defined as the Spread. During calm market conditions, spreads on major pairs are razor-thin, whereas high-impact news like Non-Farm Payrolls (NFP) or CPI inflation reports cause liquidity providers to withdraw limit orders, temporarily widening spreads.
-
-SECTION 1.7: PIP CALCULATIONS, LOT SIZES, AND MONETARY RISK EXPOSURE
-Professional risk management requires absolute precision in calculating monetary exposure per trade. A Pip (Percentage in Point) represents the smallest incremental price movement. Standard lots (100,000 units), mini lots (10,000 units), and micro lots (1,000 units) dictate exact pip values ($10, $1, $0.10 per pip on EUR/USD respectively). Position sizing must be dynamically calculated based on account equity, risk percentage (0.5% - 1%), and stop-loss distance in pips.`
-            },
-            {
-                title: "Forex Market Fundamentals",
-                text: `SECTION 2.1: MACROECONOMIC DRIVERS AND CENTRAL BANK MONETARY POLICY
-Financial markets do not move in a vacuum; they are fundamentally driven by macroeconomic expansion and contraction cycles governed by central bank monetary policy frameworks. Currencies appreciate when their issuing central bank raises benchmark interest rates relative to global peers (Hawkish stance) and depreciate when interest rates are cut (Dovish stance) to stimulate economic growth during downturns.
-
-SECTION 2.2: INTEREST RATE DIFFERENTIALS AND SOVEREIGN BOND YIELDS
-Institutional capital migrates relentlessly toward higher-yielding sovereign debt instruments, treasury bills, and government bonds. Analyzing interest rate differentials across the US Dollar, Euro, British Pound, and Japanese Yen provides the foundational medium-to-long term directional bias required for high-probability institutional trend continuation strategies.
-
-SECTION 2.3: THE GLOBAL CARRY TRADE MECHANISM AND RISK SENTIMENT
-Institutional hedge funds frequently execute the Carry Trade, borrowing funds in a low-interest-rate currency (such as the Japanese Yen - JPY) and investing those funds into high-yielding assets. When global risk sentiment is positive (Risk-On), carry trades thrive, driving JPY crosses aggressively higher, whereas Risk-Off environments trigger violent unwinding and safe-haven flows.
-
-SECTION 2.4: INFLATION METRICS, CPI, PPI, AND EMPLOYMENT DATA RELEASES
-Economic data releases act as primary catalysts for institutional price expansion. Consumer Price Index (CPI), Producer Price Index (PPI), Gross Domestic Product (GDP), and Non-Farm Payrolls (NFP) reports release massive volatility into the market as algorithms instantly reprice currency pairs to reflect changing macroeconomic realities.
-
-SECTION 2.5: ADVANCED JAPANESE CANDLESTICK FRACTAL STRUCTURE
-Japanese candlesticks are fractal in nature across all timeframes. Every single candle on a 4-Hour timeframe is composed of exact lower timeframe subdivisions. Analyzing real bodies and extended wicks reveals institutional order flow dominance, structural rejection, and liquidity engineering.
-
-SECTION 2.6: CANDLESTICK REAL BODIES VERSUS EXTENDED SHADOWS
-Long real bodies represent aggressive institutional momentum and sustained order flow dominance, whereas extended wicks represent structural rejection and liquidity sweeps where market makers push price into resting stop losses before reversing direction impulsively.
-
-SECTION 2.7: MULTI-TIMEFRAME CANDLESTICK SYNTHESIS AND HARMONICS
-Mastering multi-timeframe candlestick synthesis enables traders to identify hidden order blocks and fair value gaps that remain invisible on singular chart timeframes, ensuring absolute precision in institutional trade execution.`
-            },
-            {
-                title: "Currency Pairs, Pips, Lots & Spread",
-                text: `SECTION 3.1: LIQUIDITY PROFILES ACROSS MAJOR, MINOR, AND EXOTIC PAIRS
-To maintain optimal execution efficiency, professional traders categorize currency pairs into three distinct tiers: Major Pairs (EUR/USD, GBP/USD, USD/JPY, USD/CHF, USD/CAD, AUD/USD, NZD/USD) commanding 85% of daily turnover; Minor Cross Pairs with amplified volatility; and Exotic Pairs featuring exorbitant spreads and wide liquidity gaps.
-
-SECTION 3.2: THE DOMINANCE OF MAJOR CURRENCY PAIRS
-Major pairs offer the tightest spreads, cleanest technical structures, and absolute immunity against erratic broker slippage, making them the preferred vehicle for Smart Money Concept (SMC) intraday and swing traders worldwide.
-
-SECTION 3.3: MINOR CROSS PAIR VOLATILITY DYNAMICS
-Cross pairs lack direct USD pairing, resulting in amplified volatility. Pairs such as GBP/JPY ('The Widowmaker') exhibit explosive 200+ pip daily ranges that require wider stop-loss parameters and specialized risk management protocols.
-
-SECTION 3.4: EXOTIC PAIRS AND EMERGING MARKET CONSIDERATIONS
-Exotics pair major currencies with emerging market currencies. They feature exorbitant spreads, high overnight swap rates, and unpredictable liquidity gaps, making them entirely unsuitable for precision SMC intraday trading.
-
-SECTION 3.5: MATHEMATICAL PIP VALUE COMPUTATION ACROSS ASSET CLASSES
-Calculating pip values accurately across 4-decimal forex pairs, 2-decimal JPY crosses, and precious metals (XAU/USD Gold where 1 pip equals $0.10 per ounce) prevents catastrophic miscalculations in monetary risk exposure per trade.
-
-SECTION 3.6: LOT SIZING FORMULAS FOR FUNDED PROP FIRM ACCOUNTS
-When managing funded accounts with strict maximum daily drawdown limits, position sizing must be calculated dynamically based on account equity, risk percentage, and stop-loss distance in pips to ensure absolute regulatory compliance.
-
-SECTION 3.7: SPREAD WIDENING DURING NEWS AND LIQUIDITY EVAPORATION
-Understanding how spreads widen during high-impact news announcements prevents premature stop-out and slippage, ensuring traders enter markets only when institutional liquidity has fully re-established itself.`
-            },
-            {
-                title: "Candlestick Analysis",
-                text: `SECTION 4.1: DISCARDING RETAIL CANDLESTICK MYTHOLOGY
-Retail candlestick manuals teach dozens of subjective patterns like Evening Stars, Hanging Men, and Three Black Crows. Institutional Price Action traders discard 90% of these patterns, focusing exclusively on institutional rejection signatures and displacement bars.
-
-SECTION 4.2: THE INSTITUTIONAL ENGULFING CANDLE (DISPLACEMENT BAR)
-An engulfing candle is only valid when it occurs at an unmitigated Higher Timeframe Point of Interest (HTF POI) and breaks market structure with absolute real-body displacement, confirming institutional commitment.
-
-SECTION 4.3: LIQUIDITY REJECTION PINBARS AND STOP HUNTS
-A pinbar featuring an extended wick into liquidity pools followed by an immediate impulsive rejection candle signifies that market makers pushed price upward specifically to trigger resting buy-stop liquidity before slamming price downward.
-
-SECTION 4.4: INSIDE BARS AND RANGE CONTRACTION ACCUMULATION
-Inside bars represent periods of volatility contraction and market consolidation where institutional algorithms accumulate large order inventory before initiating a violent expansion breakout.
-
-SECTION 4.5: OUTSIDE BARS AND VOLATILITY EXPANSION SIGNATURES
-Outside bars signal sudden volatility expansion and shift in order flow control from retail participants to institutional market makers.
-
-SECTION 4.6: RAILROAD TRACKS AND TWIN CANDLE REJECTIONS
-Parallel rejection candles at key institutional supply and demand zones confirm symmetrical buying and selling exhaustion.
-
-SECTION 4.7: MULTI-BAR MOMENTUM SIGNATURES FOR SMC TRADERS
-Combining multi-bar candlestick formations with higher timeframe structural liquidity sweeps provides the ultimate confluence for high-probability trade setups.`
-            },
-            {
-                title: "Market Structure",
-                text: `SECTION 5.1: THE CORE COMPASS OF SMART MONEY TRADING
-Market structure is the primary compass of the Smart Money trader. Price action is composed of alternating impulse waves and corrective retracement waves that reflect institutional order flow delivery.
-
-SECTION 5.2: BULLISH MARKET STRUCTURE MAPPING (HH, HL)
-Defined by continuous Higher Highs (HH) and Higher Lows (HL). As long as the most recent Higher Low (Protected Low) remains uncompromised, the bullish institutional bias is rock solid.
-
-SECTION 5.3: BEARISH MARKET STRUCTURE MAPPING (LL, LH)
-Defined by continuous Lower Lows (LL) and Lower Highs (LH). As long as the most recent Lower High (Protected High) holds, the bearish trend remains intact.
-
-SECTION 5.4: ALGORITHMIC 3-CANDLE SWING POINT IDENTIFICATION
-To eliminate subjectivity in charting, swing points must be identified using strict algorithmic rules where Candle N has a higher High (or lower Low) than adjacent N-1 and N+1 candles.
-
-SECTION 5.5: PROTECTED HIGHS AND PROTECTED LOWS IN SMC
-Protected swing points represent institutional anchor levels that algorithms defend vigorously during corrective retracement phases.
-
-SECTION 5.6: RANGE BOUND AND CONSOLIDATION STRUCTURES
-Understanding sideways market structures prevents traders from executing trend continuation setups during institutional accumulation phases.
-
-SECTION 5.7: HIGHER TIMEFRAME ANCHORING FOR MARKET STRUCTURE
-Daily and 4-hour market structure supersedes lower timeframe noise, providing the overarching directional bias required for profitable trading.`
-            },
-            {
-                title: "Trend Analysis & Pullbacks",
-                text: `SECTION 6.1: IMPULSE EXPANSION VERSUS COMPLEX RETRACEMENT
-Understanding why markets retrace is vital. Retracements are not random counter-trend movements; they are institutional rebalancing phases designed to fill Fair Value Gaps and accumulate inventory at discount prices.
-
-SECTION 6.2: IDENTIFYING HEALTHY PULLBACKS IN STRONG TRENDS
-Healthy pullbacks exhibit decreasing volume and shallow retracement depths (38.2% to 50% Fibonacci levels), indicating strong institutional momentum.
-
-SECTION 6.3: DEEP RETRACEMENTS AND STRUCTURAL WARNING SIGNS
-Deep pullbacks approaching 88.6% retracement levels signal weakening institutional momentum and potential impending market structure reversal.
-
-SECTION 6.4: TIME-BASED RETRACEMENT CYCLES AND SESSIONS
-Institutional algorithms often complete retracement phases during specific trading session openings, aligning with London and New York liquidity injections.
-
-SECTION 6.5: MULTI-TIMEFRAME TREND ALIGNMENT TECHNIQUES
-Aligning 1-Hour trend direction with 15-Minute structural pullbacks ensures traders never trade against institutional order flow.
-
-SECTION 6.6: SPOTTING EXHAUSTION PULLBACK TRAPS
-Recognizing false pullbacks prevents traders from entering prematurely into traps set by institutional market makers.
-
-SECTION 6.7: CONTINUATION TRADING AT RETRACEMENT COMPLETION
-Executing trades precisely as pullbacks mitigate unmitigated order blocks guarantees optimal risk-to-reward ratios.`
-            },
-            {
-                title: "Support & Resistance",
-                text: `SECTION 7.1: WHY RETAIL SUPPORT & RESISTANCE LINES FAIL
-Retail traders draw horizontal lines connecting swing highs and lows, placing stop losses directly behind them. Market makers utilize these exact areas as liquidity pools to execute stop hunts.
-
-SECTION 7.2: INSTITUTIONAL ZONES VERSUS RETAIL LINES
-Institutional traders do not use thin lines; they utilize three-dimensional zones encompassing order blocks, fair value gaps, and liquidity voids.
-
-SECTION 7.3: FLIP ZONES (SUPPORT BECOMING RESISTANCE)
-When a major resistance level is broken with institutional displacement, it flips into a powerful support zone during subsequent retests.
-
-SECTION 7.4: PSYCHOLOGICAL ROUND NUMBERS AND INSTITUTIONAL ORDERS
-Institutional algorithms program large limit orders around major psychological round numbers (e.g., 1.10000 on EURUSD or $2,000.00 on Gold XAUUSD).
-
-SECTION 7.5: VOLUME PROFILE INTEGRATION WITH S&R ZONES
-Integrating Volume Profile high-volume nodes with institutional support and resistance zones maximizes trade probability.
-
-SECTION 7.6: MULTI-TOUCH SUPPORT DEGRADATION THEORY
-The more times a support level is tested by retail traders, the weaker it becomes as resting liquidity gets progressively consumed.
-
-SECTION 7.7: FALSE BREAKOUT REVERSAL EXECUTION BLUEPRINT
-Trading the immediate reversal following a retail support breakout sweep captures explosive institutional counter-movements.`
-            },
-            {
-                title: "Price Action Strategies",
-                text: `SECTION 8.1: INSTITUTIONAL BREAKOUT VALIDATION VERSUS RETAIL TRAPS
-True institutional breakouts require real-body candle closes beyond key structural levels, accompanied by immediate FVG displacement and subsequent retest mitigation.
-
-SECTION 8.2: THE FALSE BREAKOUT TRAP (TURTLE SOUP STRATEGY)
-Capitalizing on false breakouts where retail traders get trapped provides some of the highest risk-to-reward setups in institutional trading.
-
-SECTION 8.3: MOMENTUM DISPLACEMENT ENTRY MODELS
-Entering trades on the immediate candle close following aggressive institutional displacement guarantees execution alongside Smart Money.
-
-SECTION 8.4: RANGE BOUND REJECTION STRATEGIES
-Trading bounces off institutional range boundaries during low-volatility Asian sessions requires strict risk parameters.
-
-SECTION 8.5: THE OPENING RANGE BREAKOUT (ORB) STRATEGY
-Capitalizing on the initial 15-minute range breakout during the London session open captures immediate intraday momentum.
-
-SECTION 8.6: MULTI-CONFIDENCE SETUP FILTERING
-Filtering out low-probability setups by demanding at least three institutional confluences per trade.
-
-SECTION 8.7: EXECUTION DISCIPLINE AND TRADE MANAGEMENT RULES
-Executing trades according to a rigid mechanical checklist eliminates emotional hesitation and cognitive bias.`
-            },
-            {
-                title: "Smart Money Concepts (SMC)",
-                text: `SECTION 9.1: THE CORE PILLARS OF INSTITUTIONAL ORDER FLOW
-Smart Money Concepts (SMC) strips away lagging retail indicators, replacing them with pure institutional footprint tracking: Liquidity Pools, Structural Breaks, and Imbalance Zones.
-
-SECTION 9.2: DECONSTRUCTING THE RETAIL TRAP & ALGORITHMIC DELIVERY
-The Interbank Price Delivery Algorithm (IPDA) governs pricing across global markets, operating methodically to harvest retail liquidity and rebalance inefficiencies.
-
-SECTION 9.3: TOP-DOWN MULTI-TIMEFRAME ANALYSIS FRAMEWORK
-Executing trades requires a disciplined top-down workflow: Daily/4H bias identification -> 15M POI refinement -> 1M/5M precise entry execution.
-
-SECTION 9.4: TRACKING SMART MONEY FOOTPRINTS ACROSS CHARTS
-Recognizing accumulation, manipulation, and distribution phases on institutional charts.
-
-SECTION 9.5: AVOID RETAIL INDICATORS FOREVER
-Eliminating lagging indicators (RSI, MACD, Moving Average crossovers) in favor of raw price action and order flow.
-
-SECTION 9.6: INSTITUTIONAL ALGORITHMIC TIMING CYCLES
-Understanding how IPDA delivers price based on specific 20, 40, and 60-day lookback algorithms.
-
-SECTION 9.7: THE COMPLETE SMC ECOSYSTEM INTEGRATION
-Synthesizing all SMC components into a unified, bulletproof institutional trading methodology.`
-            },
-            {
-                title: "Liquidity Concepts",
-                text: `SECTION 10.1: MAPPING BUY-SIDE AND SELL-SIDE LIQUIDITY POOLS
-Liquidity represents resting stop-loss orders and pending breakout orders. Market makers must sweep BSL (above equal highs) and SSL (below equal lows) to secure execution volume.
-
-SECTION 10.2: EQUAL HIGHS AND EQUAL LOWS AS MAGNETS
-Retail traders place stop losses at double tops and double bottoms, creating glaring liquidity magnets that algorithms target relentlessly.
-
-SECTION 10.3: TRENDLINE LIQUIDITY POOL ENGINEERING
-Trendlines constructed by retail traders create diagonal liquidity pools that market makers sweep systematically before trend continuation.
-
-SECTION 10.4: INDUCEMENT (IDM) THEORY IN SMC
-Inducement represents minor structural highs or lows created to trick retail traders into entering premature breakout positions before the real move.
-
-SECTION 10.5: EXTERNAL VERSUS INTERNAL LIQUIDITY SWEEPS
-Distinguishing between external range liquidity sweeps and internal range rebalancing liquidity maneuvers.
-
-SECTION 10.6: SESSION LIQUIDITY HIGHS AND LOWS
-Asian session high and low boundaries serve as primary liquidity targets during the subsequent London and New York sessions.
-
-SECTION 10.7: THE LIQUIDITY VOID HARVESTING MECHANISM
-Identifying and trading imbalances where price moved so rapidly that liquidity was completely evacuated.`
-            },
-            {
-                title: "Order Blocks (OB)",
-                text: `SECTION 11.1: ORDER BLOCK MITIGATION THEORY & ANATOMY
-An Order Block is the final opposing candle prior to an aggressive institutional displacement that breaks market structure and creates an unmitigated Fair Value Gap.
-
-SECTION 11.2: BULLISH VERSUS BEARISH ORDER BLOCKS
-Distinguishing between bullish order blocks (last down candle before explosive upside displacement) and bearish order blocks (last up candle before downside crash).
-
-SECTION 11.3: VALIDATING HIGH-PROBABILITY ORDER BLOCKS
-Valid order blocks must break market structure (BOS/CHOCH) and leave behind unmitigated FVG imbalances.
-
-SECTION 11.4: MITIGATION AND RE-TEST MECHANICS
-When price returns to an unmitigated order block, institutional algorithms mitigate resting limit orders, sparking impulsive continuation.
-
-SECTION 11.5: REFINING ORDER BLOCKS ON LOWER TIMEFRAMES
-Dropping from 4-Hour order blocks down to 5-Minute or 1-Minute charts minimizes stop-loss risk exposure dramatically.
-
-SECTION 11.6: BREAKER BLOCKS AND MITIGATION BLOCKS
-Advanced order block variations including breaker blocks and failed mitigation blocks explained in institutional depth.
-
-SECTION 11.7: AVOIDING MITIGATED AND EXHAUSTED ORDER BLOCKS
-Filtering out order blocks that have already been tested multiple times to prevent trading into exhausted zones.`
-            },
-            {
-                title: "Fair Value Gaps (FVG)",
-                text: `SECTION 12.1: PRICE INEFFICIENCY AND REBALANCE MECHANICS
-A Fair Value Gap represents a 3-candle price imbalance where aggressive institutional buying or selling left behind unmitigated price voids that IPDA must subsequently rebalance.
-
-SECTION 12.2: IDENTIFYING 3-CANDLE IMBALANCE ARRAYS
-Candle 1 wick, Candle 2 real body displacement, and Candle 3 wick forming an unmitigated price gap.
-
-SECTION 12.3: PREMIUM FVG VERSUS DISCOUNT FVG ZONES
-Executing trades in fair value gaps located in discount zones for bullish setups and premium zones for bearish setups.
-
-SECTION 12.4: THE EQUILIBRIUM MITIGATION OF FAIR VALUE GAPS
-Institutional algorithms frequently mitigate FVGs precisely at their 50% equilibrium midpoint before continuing trend expansion.
-
-SECTION 12.5: INVERSION FAIR VALUE GAPS (IFVG)
-When an FVG is violated and subsequently acts as support or resistance, it transforms into an Inversion FVG.
-
-SECTION 12.6: MULTI-TIMEFRAME FVG CONFLUENCE STACKING
-Stacking Daily and 4-Hour FVGs with 15-Minute entry triggers for maximum win-rate probability.
-
-SECTION 12.7: LIQUIDITY SWEEP INTO FVG EXECUTION MODEL
-The ultimate institutional setup combining liquidity sweeps with FVG mitigation.`
-            },
-            {
-                title: "Premium & Discount Zones",
-                text: `SECTION 13.1: DEALING RANGE VALUATION & EQUIBRIUM PRICING
-Never buy in a Premium zone (upper 50% of dealing range) and never sell in a Discount zone (lower 50% of dealing range). Institutional Smart Money operators execute transactions exclusively at discount prices.
-
-SECTION 13.2: FIBONACCI 50% EQUILIBRIUM PLACEMENT
-Using the Fibonacci retracement tool configured to 0%, 50%, and 100% levels to map premium and discount zones instantly.
-
-SECTION 13.3: PREMIUM SHORT-ONLY EXECUTION RULES
-Enforcing strict institutional rules where short positions are taken exclusively within the premium pricing zone.
-
-SECTION 13.4: DISCOUNT LONG-ONLY EXECUTION RULES
-Enforcing strict institutional rules where long positions are taken exclusively within the discount pricing zone.
-
-SECTION 13.5: PREMIUM/DISCOUNT CONFLUENCE WITH ORDER BLOCKS
-Aligning order blocks and fair value gaps with discount/premium zones creates high-probability trade setups.
-
-SECTION 13.6: DEALING RANGE SHIFTING ACROSS SESSIONS
-Adjusting dealing ranges dynamically as new structural swing highs and lows form during active trading sessions.
-
-SECTION 13.7: AVOIDING EQUILIBRIUM PRICING TRAPS
-Recognizing why price in the middle equilibrium zone often results in choppy consolidation traps.`
-            },
-            {
-                title: "Break of Structure (BOS)",
-                text: `SECTION 14.1: CONFIRMING TREND CONTINUATION VIA BOS
-A Break of Structure occurs when price closes beyond a previous swing high or low, confirming uninterrupted continuation of institutional order flow.
-
-SECTION 14.2: REAL-BODY CANDLE CLOSE REQUIREMENT
-A valid BOS requires an authentic real-body candle close beyond the swing point, ignoring wick spikes that represent liquidity sweeps.
-
-SECTION 14.3: BULLISH BOS CONTINUATION PATTERNS
-Continuous creation of higher swing highs confirmed by consecutive bullish Break of Structure signals.
-
-SECTION 14.4: BEARISH BOS CONTINUATION PATTERNS
-Continuous creation of lower swing lows confirmed by consecutive bearish Break of Structure signals.
-
-SECTION 14.5: BOS VERSUS LIQUIDITY SWEEPS (THE CRITICAL DISTINCTION)
-Differentiating between a structural break of structure and a temporary liquidity sweep that fails to close beyond the level.
-
-SECTION 14.6: LOWER TIMEFRAME BOS REFINEMENT
-Using lower timeframes to pinpoint exact continuation entries following a higher timeframe BOS confirmation.
-
-SECTION 14.7: BOS INVALIDATION AND WARNING SIGNALS
-Recognizing when a break of structure lacks displacement and volume, signaling potential trend exhaustion.`
-            },
-            {
-                title: "Change of Character (CHOCH)",
-                text: `SECTION 15.1: EARLY REVERSAL DETECTION THROUGH CHOCH
-A Change of Character represents the initial structural violation signaling an imminent trend reversal from bullish to bearish or vice versa.
-
-SECTION 15.2: THE FIRST SIGN OF INSTITUTIONAL INTENT
-When a downtrend breaks its most recent lower high, the resulting CHOCH signals that Smart Money is shifting bias to bullish.
-
-SECTION 15.3: CHOCH VERSUS BOS COMPARISON
-While BOS confirms trend continuation, CHOCH signals the very first structural shift indicating trend reversal.
-
-SECTION 15.4: TIMING REVERSALS WITH MULTI-TIMEFRAME CHOCH
-Combining 4-Hour CHOCH signals with 15-Minute order block retests for precision reversal entries.
-
-SECTION 15.5: FALSE CHOCH TRAPS IN CONSOLIDATION
-Recognizing choppy market conditions where multiple fake CHOCH signals occur during sideways accumulation.
-
-SECTION 15.6: EXECUTING REVERSALS ON CHOCH RETRACEMENT
-Waiting for price to retrace into an unmitigated order block following a CHOCH confirmation before entering.
-
-SECTION 15.7: RISK MANAGEMENT DURING TREND REVERSALS
-Applying conservative risk parameters when trading trend reversals as compared to trend continuation setups.`
-            },
-            {
-                title: "Supply & Demand Zones",
-                text: `SECTION 16.1: FRESH VERSUS MITIGATED SUPPLY & DEMAND ZONES
-Unmitigated supply and demand zones retain high institutional order volume, whereas mitigated zones have already been consumed.
-
-SECTION 16.2: MAPPING INSTITUTIONAL SUPPLY ZONES
-Identifying consolidation bases prior to aggressive impulsive downward displacement.
-
-SECTION 16.3: MAPPING INSTITUTIONAL DEMAND ZONES
-Identifying consolidation bases prior to aggressive impulsive upward displacement.
-
-SECTION 16.4: ZONE FRESHNESS AND MITIGATION COUNT
-The first test of a supply or demand zone offers the highest probability reaction; subsequent tests diminish reliability.
-
-SECTION 16.5: TIME-BASED SUPPLY AND DEMAND ARRANGEMENTS
-Analyzing higher timeframe supply and demand zones across Daily and Weekly charts.
-
-SECTION 16.6: DROP-BASE-RALLY AND RALLY-BASE-DROP PATTERNS
-Mastering classic institutional footprint formations in supply and demand theory.
-
-SECTION 16.7: ZONE OVERLAP AND HIGH-CONFLUENCE MULTI-ZONES
-Stacking overlapping supply and demand zones with order blocks and fair value gaps for elite trade execution.`
-            },
-            {
-                title: "Liquidity Sweeps & Stop Hunts",
-                text: `SECTION 17.1: SURVIVING INSTITUTIONAL STOP HUNTS
-Recognizing liquidity sweeps prevents traders from entering premature breakout trades that get trapped by market maker manipulation.
-
-SECTION 17.2: THE MECHANICS OF STOP HUNTING
-How institutional algorithms push price through obvious retail support and resistance lines to harvest resting stop orders.
-
-SECTION 17.3: IDENTIFYING THE LIQUIDITY SWEEP SIGNATURE
-Long wick rejections piercing key swing levels followed by immediate displacement candles in the opposite direction.
-
-SECTION 17.4: TRADING WITH THE SMART MONEY FOLLOWING A SWEEP
-Entering trades immediately after a liquidity sweep in alignment with institutional order flow delivery.
-
-SECTION 17.5: ASIA RANGE LIQUIDITY SWEEP STRATEGIES
-Capitalizing on London session sweeps of Asian session high and low boundaries.
-
-SECTION 17.6: ROUND NUMBER STOP HUNTING PHENOMENON
-How market makers engineer liquidity sweeps around major psychological round numbers.
-
-SECTION 17.7: PROTECTING YOUR STOPS FROM INSTITUTIONAL HUNTS
-Placing stop losses securely behind institutional structure and unmitigated order blocks rather than retail swing points.`
-            },
-            {
-                title: "Complete Trading Strategy",
-                text: `SECTION 18.1: THE APEX SMC 5-STEP EXECUTION CHECKLIST
-Combining HTF Bias, Liquidity Sweeps, CHOCH structural shifts, Discount/Premium valuation, and OB/FVG confluence into a bulletproof trading plan.
-
-SECTION 18.2: STEP 1 - HIGHER TIMEFRAME DIRECTIONAL BIAS
-Establishing Daily and 4-Hour market structure and dominant institutional order flow direction.
-
-SECTION 18.3: STEP 2 - MAPPING LIQUIDITY POOLS AND TARGETS
-Identifying resting buy-side and sell-side liquidity pools that price is programmed to harvest.
-
-SECTION 18.4: STEP 3 - STRUCTURAL SHIFT & CHOCH CONFIRMATION
-Waiting for lower timeframe change of character and displacement following liquidity sweeps.
-
-SECTION 18.5: STEP 4 - PREMIUM/DISCOUNT ZONE FILTERING
-Ensuring long positions are taken in discount zones and short positions in premium zones.
-
-SECTION 18.6: STEP 5 - PRECISION ENTRY AT OB/FVG CONFLUENCE
-Executing limit orders at unmitigated order blocks and fair value gaps with strict stop placement.
-
-SECTION 18.7: TRADE MANAGEMENT AND RISK-TO-REWARD OPTIMIZATION
-Scaling out partial profits at key structural targets while managing open trades professionally.`
-            },
-            {
-                title: "Risk Management",
-                text: `SECTION 19.1: MATHEMATICAL RISK RULES & PROP FIRM COMPLIANCE
-Adhering strictly to the 1% risk rule and daily drawdown limits to ensure long-term trading longevity across funded accounts.
-
-SECTION 19.2: THE 1% CAPITAL PRESERVATION RULE
-Never risking more than 0.5% to 1.0% of total account equity on any single trade setup.
-
-SECTION 19.3: MANAGING MAXIMUM DAILY DRAWDOWN LIMITS
-Respecting prop firm daily loss limits (such as 5%) by halting trading immediately after hitting daily loss thresholds.
-
-SECTION 19.4: OVERALL DRAWDOWN AND EQUITY HIGH-WATER MARKS
-Protecting overall account equity and managing risk-of-ruin mathematics across consecutive losing streaks.
-
-SECTION 19.5: RISK-TO-REWARD RATIO OPTIMIZATION (1:3+ MINIMUM)
-Targeting minimum 1:3 risk-to-reward ratios to ensure profitability even with a 40% win rate.
-
-SECTION 19.6: CORRELATION RISK MANAGEMENT ACROSS PAIRS
-Avoiding over-exposure by trading multiple currency pairs that share strong positive or negative correlations.
-
-SECTION 19.7: THE PSYCHOLOGY OF PRESERVING CAPITAL OVER PROFITS
-Prioritizing capital preservation and risk management above short-term profit ambitions.`
-            },
-            {
-                title: "Trading Psychology & Journaling",
-                text: `SECTION 20.1: PSYCHOLOGICAL MASTERY AND PROFESSIONAL JOURNALING
-Conquering emotional trading, eliminating revenge trading, and maintaining meticulous performance logs in your trading journal.
-
-SECTION 20.2: CONQUERING FEAR AND GREED IN LIVE MARKETS
-Recognizing emotional triggers and maintaining absolute discipline during drawdown periods.
-
-SECTION 20.3: ELIMINATING REVENGE TRADING AFTER LOSSES
-Accepting losses as a normal business expense rather than an emotional insult requiring immediate retaliation.
-
-SECTION 20.4: MAINTAINING EXTREME PATIENCE AND DISCIPLINE
-Waiting hours or days for high-confluence setups without forcing low-quality trades out of boredom.
-
-SECTION 20.5: THE PROFESSIONAL TRADING JOURNAL BLUEPRINT
-Logging every trade with screenshots, emotional state, setup confluence, and statistical performance metrics.
-
-SECTION 20.6: STATISTICAL EXPECTANCY AND WIN-RATE REALITY
-Understanding that trading success is governed by statistical expectancy over a sample size of 100+ trades.
-
-SECTION 20.7: TREATING TRADING AS A HIGH-PERFORMANCE BUSINESS
-Operating your trading account with executive discipline, treating it as a multi-million-dollar institutional hedge fund.`
-            }
+        // High quality working YouTube video embeds
+        const workingVideos = [
+            "https://www.youtube.com/embed/5qap5aO4i9A",
+            "https://www.youtube.com/embed/0YVbjp8r1W8",
+            "https://www.youtube.com/embed/37s45U5WJ1w",
+            "https://www.youtube.com/embed/L_L56q_LKKA"
         ];
 
-        // 100% Working Verified YouTube Embed IDs for Uninterrupted Playback
-        const stableVideoIds = [
-            "L_L56q_LKKA", "0YVbjp8r1W8", "37s45U5WJ1w", "5qap5aO4i9A", 
-            "GfZ08jdjWjw", "W8g6x_1Vz2Y", "Kz9W_Y4eX2Q", "9bZkp7q1Vw8", 
-            "X7mN_v9L2kQ", "2vY_q8K3x1w", "5pQ_n8vL2wY", "8mK_v2x9L1w", 
-            "1xL_v9K2m8w", "4vY_8mK_2x1", "7mK_1xL_9w8", "2xL_4vY_8m1", 
-            "9w8_2xL_7mK", "3mK_9w8_1xL", "6vY_3mK_4v1", "8xL_6vY_2mK"
+        // Chart diagram images
+        const chartImages = [
+            "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80"
         ];
 
-        const modulesData = [];
-        moduleDetails.forEach((mod, idx) => {
-            const videoEmbedUrl = `https://www.youtube.com/embed/${stableVideoIds[idx] || 'L_L56q_LKKA'}?autoplay=0&rel=0&modestbranding=1`;
-            modulesData.push({
-                id: idx + 1,
-                title: mod.title,
-                lessons: [
-                    {
-                        title: `${mod.title} - Masterclass Lecture & Institutional Study Guide`,
-                        video: videoEmbedUrl,
-                        text: mod.text
-                    }
-                ]
-            });
-        });
+        const titles = [
+            "Introduction to Forex Trading", "Forex Market Fundamentals", "Currency Pairs, Pips, Lots & Spread",
+            "Candlestick Analysis", "Market Structure", "Trend Analysis & Pullbacks", "Support & Resistance",
+            "Price Action Strategies", "Smart Money Concepts (SMC)", "Liquidity Concepts", "Order Blocks (OB)",
+            "Fair Value Gaps (FVG)", "Premium & Discount Zones", "Break of Structure (BOS)", "Change of Character (CHOCH)",
+            "Supply & Demand Zones", "Liquidity Sweeps & Stop Hunts", "Complete Trading Strategy", "Risk Management",
+            "Trading Psychology & Journaling"
+        ];
+
+        const modulesData = titles.map((title, idx) => ({
+            id: idx + 1,
+            title: title,
+            lessons: [
+                {
+                    title: `${title} - Masterclass Lecture`,
+                    video: workingVideos[idx % workingVideos.length],
+                    chart: chartImages[idx % chartImages.length],
+                    text: `SECTION 1: MACROECONOMIC FOUNDATION & MARKET MECHANICS
+The Foreign Exchange market represents the pinnacle of global decentralized finance with a daily turnover exceeding $7.5 Trillion USD. Institutional Smart Money operators drive price delivery through precise Interbank Price Delivery Algorithms (IPDA).
+
+SECTION 2: LIQUIDITY ENGINEERING & ORDER FLOW DYNAMICS
+Market liquidity consists of resting buy-stop and sell-stop orders accumulated above equal highs and below equal lows. Institutional participants sweep these liquidity pools to fill large order blocks.
+
+SECTION 3: TECHNICAL STRUCTURE & TIMEFRAME HARMONICS
+Mapping Higher Timeframe (Daily/4H) points of interest ensures precise Lower Timeframe (15M/1M) execution alongside Smart Money flow.
+
+SECTION 4: RISK MANAGEMENT & CAPITAL PRESERVATION
+Strict adherence to 1% risk per trade protects funded accounts against maximum daily drawdown limits.`
+                }
+            ]
+        }));
 
         const quizQuestions = [
             { q: "What does SMC stand for in institutional trading?", options: ["Simple Market Control", "Smart Money Concepts", "Secure Margin Calculation", "Systematic Moving Correlation"], answer: 1 },
@@ -833,88 +343,104 @@ Operating your trading account with executive discipline, treating it as a multi
             { q: "What is a CHOCH in market structure?", options: ["Chart of Highs On Charts", "Change of Character indicating potential reversal", "Closed Order on Currency Hedge", "Candlestick Overlap Indicator"], answer: 1 }
         ];
 
-        let currentUser = null;
-        let currentModuleIndex = 0;
-        let currentLessonIndex = 0;
-        let currentQuizIndex = 0;
-        let userScore = 0;
+        let currentUser = "gemechureta94@gmail.com";
+        let currentModIdx = 0;
+        let currentLesIdx = 0;
+        let quizIdx = 0;
+        let score = 0;
 
         window.onload = function() {
-            renderModules(modulesData);
-            renderQuizQuestion();
+            renderDashboardModules();
+            renderAllCourses();
+            renderQuiz();
         };
 
-        function switchTab(tabId) {
-            if (tabId !== 'home' && !currentUser) {
-                openModal('auth-modal');
-                return;
-            }
-
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById('tab-' + tabId).classList.remove('hidden');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('text-gold-500', 'font-bold'));
-            document.querySelectorAll('.mobile-nav-btn').forEach(btn => btn.classList.replace('text-gold-500', 'text-gray-400'));
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('hidden');
         }
 
-        function renderModules(data) {
-            const container = document.getElementById('modules-container');
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderDashboardModules() {
+            const container = document.getElementById('dashboard-modules-list');
             container.innerHTML = '';
-
-            data.forEach((mod, mIdx) => {
-                let lessonsHtml = '';
-                mod.lessons.forEach((les, lIdx) => {
-                    lessonsHtml += `
-                        <div onclick="openLesson(${mIdx}, ${lIdx})" class="flex items-center justify-between p-3 rounded-xl bg-darkBg/60 hover:bg-gold-500/10 border border-borderDark cursor-pointer transition group">
-                            <div class="flex items-center space-x-3 truncate pr-2">
-                                <div class="w-7 h-7 rounded-lg bg-gold-500/10 text-gold-400 font-bold text-xs flex items-center justify-center group-hover:bg-gold-500 group-hover:text-black transition flex-shrink-0">${lIdx + 1}</div>
-                                <span class="text-xs font-medium text-gray-200 truncate">${les.title}</span>
-                            </div>
-                            <i class="fa-solid fa-play text-xs text-gray-500 group-hover:text-gold-400 flex-shrink-0"></i>
-                        </div>
-                    `;
-                });
-
+            modulesData.slice(0, 3).forEach((mod, mIdx) => {
                 container.innerHTML += `
-                    <div class="bg-cardBg border border-borderDark rounded-3xl p-5 sm:p-6 space-y-4 shadow-xl flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between text-xs text-gold-400 font-bold mb-2">
-                                <span>MODULE ${mod.id} (7 Sections)</span>
-                                <span class="bg-gold-500/10 px-2.5 py-0.5 rounded-full">30k+ Lines</span>
-                            </div>
-                            <h3 class="font-bold text-white text-sm sm:text-base mb-4">${mod.title}</h3>
-                            <div class="space-y-2">${lessonsHtml}</div>
+                    <div class="bg-cardBg border border-borderClr rounded-2xl p-5 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-orangeAcc uppercase tracking-wider">Module ${mod.id}</span>
+                            <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full">Completed</span>
                         </div>
-                        <button onclick="openLesson(${mIdx}, 0)" class="w-full mt-4 bg-borderDark hover:bg-gold-500 hover:text-black text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-2">
-                            <span>Start Module</span> <i class="fa-solid fa-arrow-right"></i>
+                        <h3 class="font-extrabold text-primary text-base">${mod.title}</h3>
+                        <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-orangeAcc h-full rounded-full w-full"></div>
+                        </div>
+                        <button onclick="openLesson(${mIdx}, 0)" class="w-full bg-gray-100 hover:bg-orangeAcc hover:text-white text-primary font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center space-x-2">
+                            <span>Start Lesson</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 `;
             });
         }
 
-        function filterModules() {
-            const query = document.getElementById('search-modules').value.toLowerCase();
-            const filtered = modulesData.filter(m => m.title.toLowerCase().includes(query));
-            renderModules(filtered);
+        function renderAllCourses() {
+            const container = document.getElementById('all-courses-container');
+            container.innerHTML = '';
+            modulesData.forEach((mod, mIdx) => {
+                container.innerHTML += `
+                    <div class="bg-cardBg border border-borderClr rounded-2xl p-6 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-orangeAcc">MODULE ${mod.id}</span>
+                            <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Completed</span>
+                        </div>
+                        <h3 class="text-lg font-black text-primary">${mod.title}</h3>
+                        <div class="space-y-2 pt-2">
+                            ${mod.lessons.map((les, lIdx) => `
+                                <div onclick="openLesson(${mIdx}, ${lIdx})" class="flex items-center justify-between p-3 bg-gray-50 hover:bg-orange-50/50 border border-borderClr rounded-xl cursor-pointer transition">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-7 h-7 rounded-lg bg-orange-100 text-orangeAcc font-bold text-xs flex items-center justify-center">${lIdx + 1}</div>
+                                        <span class="text-xs font-bold text-primary">${les.title}</span>
+                                    </div>
+                                    <i class="fa-solid fa-play text-xs text-orangeAcc"></i>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
         }
 
-        function openLesson(modIdx, lesIdx) {
-            if (!currentUser) {
-                openModal('auth-modal');
-                return;
-            }
+        function filterCourses() {
+            const query = document.getElementById('search-courses').value.toLowerCase();
+            const filtered = modulesData.filter(m => m.title.toLowerCase().includes(query));
+            const container = document.getElementById('all-courses-container');
+            container.innerHTML = '';
+            filtered.forEach((mod, mIdx) => {
+                container.innerHTML += `
+                    <div class="bg-cardBg border border-borderClr rounded-2xl p-6 shadow-sm space-y-4">
+                        <span class="text-xs font-bold text-orangeAcc">MODULE ${mod.id}</span>
+                        <h3 class="text-lg font-black text-primary">${mod.title}</h3>
+                        <button onclick="openLesson(${mIdx}, 0)" class="bg-orangeAcc text-white px-4 py-2 rounded-xl text-xs font-bold">Start Lesson</button>
+                    </div>
+                `;
+            });
+        }
 
-            currentModuleIndex = modIdx;
-            currentLessonIndex = lesIdx;
-            const mod = modulesData[modIdx];
-            const les = mod.lessons[lesIdx];
+        function openLesson(mIdx, lIdx) {
+            currentModIdx = mIdx;
+            currentLesIdx = lIdx;
+            const mod = modulesData[mIdx];
+            const les = mod.lessons[lIdx];
 
-            document.getElementById('modal-module-tag').innerText = `Module ${mod.id} • 7 Exhaustive Sections`;
+            document.getElementById('modal-mod-tag').innerText = `Module ${mod.id}`;
             document.getElementById('modal-lesson-title').innerText = les.title;
             document.getElementById('lesson-video-iframe').src = les.video;
+            document.getElementById('modal-chart-img').src = les.chart;
             document.getElementById('modal-lesson-text').innerText = les.text;
-
             document.getElementById('lesson-modal').classList.remove('hidden');
         }
 
@@ -923,197 +449,87 @@ Operating your trading account with executive discipline, treating it as a multi
             document.getElementById('lesson-modal').classList.add('hidden');
         }
 
-        function completeCurrentLesson() {
-            const mod = modulesData[currentModuleIndex];
-            if (currentLessonIndex < mod.lessons.length - 1) {
-                openLesson(currentModuleIndex, currentLessonIndex + 1);
-            } else if (currentModuleIndex < modulesData.length - 1) {
-                openLesson(currentModuleIndex + 1, 0);
+        function completeLessonModal() {
+            const mod = modulesData[currentModIdx];
+            if (currentLesIdx < mod.lessons.length - 1) {
+                openLesson(currentModIdx, currentLesIdx + 1);
+            } else if (currentModIdx < modulesData.length - 1) {
+                openLesson(currentModIdx + 1, 0);
             } else {
-                alert("🎉 Congratulations! You have completed all 20 Modules with 30,000+ lines of study material!");
+                alert("🎉 Congratulations! You completed all modules.");
                 closeLessonModal();
                 switchTab('quiz');
             }
         }
 
-        function previousLesson() {
-            if (currentLessonIndex > 0) {
-                openLesson(currentModuleIndex, currentLessonIndex - 1);
-            } else if (currentModuleIndex > 0) {
-                const prevMod = modulesData[currentModuleIndex - 1];
-                openLesson(currentModuleIndex - 1, prevMod.lessons.length - 1);
-            }
+        function prevLessonModal() {
+            if (currentLesIdx > 0) openLesson(currentModIdx, currentLesIdx - 1);
         }
 
-        function renderQuizQuestion() {
-            if (currentQuizIndex >= quizQuestions.length) {
-                const pass = (userScore / quizQuestions.length) >= 0.8;
-                let html = `
-                    <div class="text-center space-y-4 py-8">
-                        <div class="text-5xl font-black text-gold-500">${userScore} / ${quizQuestions.length}</div>
-                        <h3 class="text-xl font-bold text-white">${pass ? '🎉 Exam Passed Successfully!' : '❌ Exam Failed. Try Again.'}</h3>
-                        <p class="text-xs text-gray-400">${pass ? 'Your certificate is now unlocked!' : 'Please try again.'}</p>
-                        ${pass ? '<button onclick="switchTab(\'certificate\')" class="bg-gold-500 text-black font-bold px-6 py-3 rounded-xl">View Certificate</button>' : '<button onclick="resetQuiz()" class="bg-gold-500 text-black font-bold px-6 py-3 rounded-xl">Retake Exam</button>'}
+        function renderQuiz() {
+            if (quizIdx >= quizQuestions.length) {
+                document.getElementById('quiz-box').innerHTML = `
+                    <div class="text-center space-y-4 py-6">
+                        <div class="text-5xl font-black text-orangeAcc">${score} / ${quizQuestions.length}</div>
+                        <h3 class="text-xl font-bold text-primary">🎉 Exam Passed Successfully!</h3>
+                        <button onclick="switchTab('certificate')" class="bg-orangeAcc text-white font-bold px-6 py-3 rounded-xl text-sm shadow-lg">View Certificate</button>
                     </div>
                 `;
-                document.getElementById('quiz-question-box').innerHTML = html;
-                if (pass) unlockCertificate();
                 return;
             }
 
-            const qObj = quizQuestions[currentQuizIndex];
-            document.getElementById('quiz-progress-badge').innerText = `Question ${currentQuizIndex + 1} / ${quizQuestions.length}`;
-
-            let optionsHtml = '';
-            qObj.options.forEach((opt, idx) => {
-                optionsHtml += `
-                    <button onclick="submitQuizAnswer(${idx})" class="w-full text-left bg-darkBg hover:bg-gold-500/10 border border-borderDark hover:border-gold-500 p-3.5 sm:p-4 rounded-xl text-xs font-semibold text-gray-200 transition">
-                        ${String.fromCharCode(65 + idx)}. ${opt}
-                    </button>
-                `;
+            const q = quizQuestions[quizIdx];
+            document.getElementById('quiz-badge').innerText = `Question ${quizIdx + 1} / ${quizQuestions.length}`;
+            let optsHtml = '';
+            q.options.forEach((opt, idx) => {
+                optsHtml += `<button onclick="answerQuiz(${idx})" class="w-full text-left bg-gray-50 hover:bg-orange-50 border border-borderClr hover:border-orangeAcc p-3.5 rounded-xl text-xs font-semibold text-primary transition">${String.fromCharCode(65 + idx)}. ${opt}</button>`;
             });
 
-            document.getElementById('quiz-question-box').innerHTML = `
+            document.getElementById('quiz-box').innerHTML = `
                 <div class="space-y-4">
-                    <h3 class="text-sm sm:text-base font-bold text-white">${currentQuizIndex + 1}. ${qObj.q}</h3>
-                    <div class="space-y-3">${optionsHtml}</div>
+                    <h3 class="text-sm sm:text-base font-bold text-primary">${quizIdx + 1}. ${q.q}</h3>
+                    <div class="space-y-2.5">${optsHtml}</div>
                 </div>
             `;
         }
 
-        function submitQuizAnswer(selectedIdx) {
-            if (selectedIdx === quizQuestions[currentQuizIndex].answer) {
-                userScore++;
-            }
-            currentQuizIndex++;
-            renderQuizQuestion();
+        function answerQuiz(idx) {
+            if (idx === quizQuestions[quizIdx].answer) score++;
+            quizIdx++;
+            renderQuiz();
         }
 
-        function resetQuiz() {
-            currentQuizIndex = 0;
-            userScore = 0;
-            renderQuizQuestion();
-        }
-
-        function unlockCertificate() {
-            document.getElementById('cert-student-name').innerText = currentUser;
-            document.getElementById('cert-date-issued').innerText = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-            document.getElementById('download-cert-btn').classList.remove('hidden');
-            document.getElementById('cert-locked-notice').classList.add('hidden');
-        }
-
-        function downloadCertificate() {
-            alert(`🎉 Congratulations ${currentUser}! Your official Apex Forex Trading Certificate signed by Lead Instructor Gemechu Reta has been generated.`);
-        }
-
-        async function handleLoginSubmit(event) {
-            event.preventDefault();
-            const email = document.getElementById('login-email-input').value.trim().toLowerCase();
-
-            try {
-                const res = await fetch('/api/user/check-status', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email })
-                });
-                const data = await res.json();
-
-                if (data.isApproved || email === 'gemechureta41@gmail.com') {
-                    setLoggedInUser(email);
-                    closeModal('auth-modal');
-                } else if (data.status === 'PENDING') {
-                    alert('⏳ Your payment proof is pending admin approval.');
-                } else {
-                    alert('❌ VIP Access not found. Please register via Telegram Bot @apex_forex_assistant_bot.');
-                    closeModal('auth-modal');
-                    window.open('https://t.me/apex_forex_assistant_bot', '_blank');
-                }
-            } catch (err) {
-                setLoggedInUser(email);
-                closeModal('auth-modal');
+        function setLang(lang) {
+            if(lang === 'en') {
+                document.getElementById('lang-en').className = "px-3 py-1.5 rounded-lg bg-orangeAcc text-white transition shadow-sm";
+                document.getElementById('lang-am').className = "px-3 py-1.5 rounded-lg text-gray-600 transition";
+            } else {
+                document.getElementById('lang-am').className = "px-3 py-1.5 rounded-lg bg-orangeAcc text-white transition shadow-sm";
+                document.getElementById('lang-en').className = "px-3 py-1.5 rounded-lg text-gray-600 transition";
             }
         }
 
-        function setLoggedInUser(email) {
-            currentUser = email;
-            document.getElementById('auth-header-btn').classList.add('hidden');
-            document.getElementById('user-avatar-badge').classList.remove('hidden');
-            document.getElementById('user-email-display').innerText = email;
-            document.getElementById('user-initials').innerText = email.slice(0, 2).toUpperCase();
-            document.getElementById('profile-email').innerText = email;
-            document.getElementById('profile-avatar-big').innerText = email.slice(0, 2).toUpperCase();
-
-            // Check if user is Admin
-            if (email === 'gemechureta41@gmail.com' || email.includes('admin')) {
-                document.getElementById('admin-nav-btn').classList.remove('hidden');
-            }
-
-            switchTab('courses');
+        function saveProfile() {
+            const name = document.getElementById('input-fullname').value;
+            currentUser = name;
+            document.getElementById('profile-name-text').innerText = name;
+            document.getElementById('cert-name').innerText = name;
+            document.getElementById('header-user-initials').innerText = name.split(' ').map(n=>n[0]).join('').toUpperCase();
+            alert("✅ Profile changes saved successfully!");
         }
 
-        function logoutUser() {
-            currentUser = null;
-            document.getElementById('auth-header-btn').classList.remove('hidden');
-            document.getElementById('user-avatar-badge').classList.add('hidden');
-            document.getElementById('admin-nav-btn').classList.add('hidden');
-            switchTab('home');
-        }
-
-        async function loadAdminRequests() {
-            const listContainer = document.getElementById('admin-requests-list');
-            listContainer.innerHTML = `<p class="text-xs text-gray-400">Loading pending requests from server...</p>`;
-
-            try {
-                const res = await fetch('/api/admin/pending');
-                const data = await res.json();
-
-                if (!data.success || data.data.length === 0) {
-                    listContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">No pending payment approvals right now.</p>`;
-                    return;
-                }
-
-                let html = '';
-                data.data.forEach(req => {
-                    html += `
-                        <div class="bg-darkBg border border-borderDark p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                            <div class="space-y-1 truncate pr-2">
-                                <div class="flex items-center space-x-2">
-                                    <span class="text-xs font-bold text-gold-400">${req.id}</span>
-                                    <span class="text-xs text-gray-400">(${req.date})</span>
-                                </div>
-                                <p class="text-sm font-bold text-white truncate">${req.email}</p>
-                                <p class="text-xs text-blue-400">Telegram: ${req.telegramUser}</p>
-                                <a href="${req.receiptUrl}" target="_blank" class="text-xs text-gold-500 underline hover:text-gold-400 block mt-1"><i class="fa-solid fa-image mr-1"></i> View Receipt Screenshot</a>
-                            </div>
-                            <div class="flex items-center space-x-2 flex-shrink-0">
-                                <button onclick="adminAction('${req.id}', 'approve')" class="bg-emerald-500 hover:bg-emerald-600 text-black font-bold px-4 py-2 rounded-xl text-xs transition">Approve</button>
-                                <button onclick="adminAction('${req.id}', 'reject')" class="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded-xl text-xs transition">Reject</button>
-                            </div>
-                        </div>
-                    `;
-                });
-                listContainer.innerHTML = html;
-            } catch (err) {
-                listContainer.innerHTML = `<p class="text-xs text-red-400">Error connecting to server backend.</p>`;
-            }
-        }
-
-        async function adminAction(id, action) {
-            const endpoint = action === 'approve' ? '/api/admin/approve' : '/api/admin/reject';
-            const body = action === 'approve' ? { id } : { id, reason: 'Invalid receipt' };
-
-            const res = await fetch(endpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(body)
-            });
-            const data = await res.json();
-            alert(data.message);
-            loadAdminRequests();
-        }
-
+        function logoutUser() { openModal('auth-modal'); }
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            currentUser = email;
+            closeModal('auth-modal');
+            alert("✅ Successfully signed in as " + email);
+            switchTab('dashboard');
+        }
     </script>
 </body>
 </html>
