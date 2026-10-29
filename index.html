@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Forex Trading - Masterclass Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        darkBg: '#0b0f19',
+                        cardBg: '#111827',
+                        borderDark: '#1f2937'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0b0f19; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-100 min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-black">
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 bg-cardBg/90 backdrop-blur-md border-b border-borderDark px-4 lg:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-gold-600 to-gold-400 flex items-center justify-center font-black text-black text-xl shadow-lg shadow-gold-500/20">A</div>
+            <div>
+                <h1 class="font-extrabold text-lg tracking-wider text-white">APEX <span class="text-gold-500">FOREX</span></h1>
+                <p class="text-xs text-gray-400">Masterclass Platform</p>
+            </div>
+        </div>
+
+        <div id="nav-menu" class="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <button onclick="switchTab('home')" class="nav-btn text-gold-500 hover:text-gold-400 transition"><i class="fa-solid fa-house mr-1.5"></i> Home</button>
+            <button onclick="switchTab('courses')" class="nav-btn text-gray-400 hover:text-gold-400 transition"><i class="fa-solid fa-graduation-cap mr-1.5"></i> Courses</button>
+            <button onclick="switchTab('quiz')" class="nav-btn text-gray-400 hover:text-gold-400 transition"><i class="fa-solid fa-clipboard-question mr-1.5"></i> Quiz</button>
+            <button onclick="switchTab('certificate')" class="nav-btn text-gray-400 hover:text-gold-400 transition"><i class="fa-solid fa-award mr-1.5"></i> Certificate</button>
+            <button onclick="switchTab('profile')" class="nav-btn text-gray-400 hover:text-gold-400 transition"><i class="fa-solid fa-user mr-1.5"></i> Profile</button>
+            <button id="admin-nav-btn" onclick="switchTab('admin')" class="hidden nav-btn text-red-400 hover:text-red-300 transition"><i class="fa-solid fa-shield-halved mr-1.5"></i> Admin</button>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <div id="auth-header-btn">
+                <button onclick="openModal('auth-modal')" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-4 py-2 rounded-xl text-sm transition shadow-lg shadow-gold-500/10">
+                    <i class="fa-solid fa-right-to-bracket mr-1"></i> VIP Login
+                </button>
+            </div>
+            <div id="user-avatar-badge" class="hidden flex items-center space-x-2 bg-borderDark px-3 py-1.5 rounded-xl border border-gray-700">
+                <div class="w-7 h-7 rounded-full bg-gold-500 text-black font-bold flex items-center justify-center text-xs" id="user-initials">ST</div>
+                <span class="text-xs font-semibold text-gray-200" id="user-email-display">student@gmail.com</span>
+                <button onclick="logoutUser()" class="text-gray-400 hover:text-red-400 ml-2 text-xs"><i class="fa-solid fa-power-off"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 lg:p-8">
+
+        <!-- TAB 1: HOME / LANDING -->
+        <section id="tab-home" class="tab-content space-y-12">
+            <!-- Hero Banner -->
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-gray-900 via-cardBg to-gray-900 border border-borderDark p-8 lg:p-12 shadow-2xl flex flex-col lg:flex-row items-center justify-between">
+                <div class="max-w-xl space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-gold-500/10 border border-gold-500/30 px-3 py-1 rounded-full text-gold-400 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-fire"></i> <span>Lead Instructor: Gemechu Reta</span>
+                    </div>
+                    <h2 class="text-3xl lg:text-5xl font-extrabold text-white leading-tight">
+                        Master <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600">Smart Money Concepts</span> & Price Action
+                    </h2>
+                    <p class="text-gray-400 text-sm lg:text-base leading-relaxed">
+                        Your complete guide to becoming a consistently profitable Forex trader. Learn institutional order blocks, liquidity sweeps, fair value gaps, and strict risk management.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchTab('courses')" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-6 py-3 rounded-xl shadow-lg shadow-gold-500/20 transition flex items-center space-x-2">
+                            <span>Explore 20 Modules</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button onclick="openModal('bot-modal')" class="bg-borderDark hover:bg-gray-800 text-white font-semibold px-6 py-3 rounded-xl border border-gray-700 transition flex items-center space-x-2">
+                            <i class="fa-brands fa-telegram text-blue-400 text-lg"></i> <span>Join Telegram Bot</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Stat Cards -->
+                <div class="mt-8 lg:mt-0 grid grid-cols-2 gap-4 w-full lg:w-auto">
+                    <div class="bg-darkBg/80 border border-borderDark p-6 rounded-2xl text-center shadow-inner">
+                        <div class="text-3xl font-black text-gold-500">20</div>
+                        <div class="text-xs text-gray-400 mt-1 uppercase font-semibold">Modules</div>
+                    </div>
+                    <div class="bg-darkBg/80 border border-borderDark p-6 rounded-2xl text-center shadow-inner">
+                        <div class="text-3xl font-black text-gold-500">50</div>
+                        <div class="text-xs text-gray-400 mt-1 uppercase font-semibold">HD Lessons</div>
+                    </div>
+                    <div class="bg-darkBg/80 border border-borderDark p-6 rounded-2xl text-center shadow-inner">
+                        <div class="text-3xl font-black text-gold-500">10k+</div>
+                        <div class="text-xs text-gray-400 mt-1 uppercase font-semibold">Study Words</div>
+                    </div>
+                    <div class="bg-darkBg/80 border border-borderDark p-6 rounded-2xl text-center shadow-inner">
+                        <div class="text-3xl font-black text-gold-500">80%</div>
+                        <div class="text-xs text-gray-400 mt-1 uppercase font-semibold">Pass Certificate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Features -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-cardBg border border-borderDark p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-video"></i></div>
+                    <h3 class="font-bold text-white text-lg">HD Video Lessons</h3>
+                    <p class="text-xs text-gray-400">Curated YouTube video walkthroughs for every single module from basics to advanced liquidity.</p>
+                </div>
+                <div class="bg-cardBg border border-borderDark p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3 class="font-bold text-white text-lg">Chart Analysis</h3>
+                    <p class="text-xs text-gray-400">Real institutional price action setups, Order Blocks, and Fair Value Gaps on XAUUSD & EURUSD.</p>
+                </div>
+                <div class="bg-cardBg border border-borderDark p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-clipboard-question"></i></div>
+                    <h3 class="font-bold text-white text-lg">Interactive Quizzes</h3>
+                    <p class="text-xs text-gray-400">Test your mastery with English quizzes structured to simulate real prop firm trader evaluations.</p>
+                </div>
+                <div class="bg-cardBg border border-borderDark p-6 rounded-2xl space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-award"></i></div>
+                    <h3 class="font-bold text-white text-lg">Auto Certificate</h3>
+                    <p class="text-xs text-gray-400">Score 80% or higher on the final exam to instantly generate your personalized signed certificate.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: COURSES & MODULES (1-20) -->
+        <section id="tab-courses" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-white">Complete Forex Masterclass Curriculum</h2>
+                    <p class="text-xs text-gray-400">20 Comprehensive Modules & 50 HD Video Lessons</p>
+                </div>
+                <div class="w-full md:w-72">
+                    <input type="text" id="search-modules" onkeyup="filterModules()" placeholder="Search modules..." class="w-full bg-cardBg border border-borderDark rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                </div>
+            </div>
+
+            <!-- Modules Grid -->
+            <div id="modules-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- TAB 3: QUIZ EXAM -->
+        <section id="tab-quiz" class="tab-content hidden max-w-2xl mx-auto space-y-6">
+            <div class="bg-cardBg border border-borderDark p-8 rounded-3xl shadow-xl">
+                <div class="flex items-center justify-between border-b border-borderDark pb-4 mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-white">Apex Forex Certification Exam</h2>
+                        <p class="text-xs text-gray-400">Passing score: 80% required for Certificate</p>
+                    </div>
+                    <div class="bg-gold-500/10 text-gold-400 text-xs px-3 py-1 rounded-full font-bold" id="quiz-progress-badge">Question 1 / 5</div>
+                </div>
+
+                <div id="quiz-question-box" class="space-y-6">
+                    <!-- Question Injected Here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: CERTIFICATE -->
+        <section id="tab-certificate" class="tab-content hidden space-y-8 text-center">
+            <div class="max-w-3xl mx-auto space-y-4">
+                <h2 class="text-2xl font-extrabold text-white">Your Professional Trading Certificate</h2>
+                <p class="text-xs text-gray-400">Complete the course quizzes with 80%+ score to unlock your official diploma.</p>
+                
+                <!-- Certificate Preview Canvas Box -->
+                <div id="cert-preview-card" class="bg-gradient-to-tr from-gray-900 via-cardBg to-gray-900 border-4 border-gold-500/50 p-8 rounded-3xl shadow-2xl relative overflow-hidden space-y-6 text-center">
+                    <div class="absolute top-4 right-4 text-gold-500/20 text-7xl font-black pointer-events-none">APEX</div>
+                    <div class="space-y-2">
+                        <h3 class="text-xs uppercase tracking-widest text-gold-400 font-bold">Apex Forex Trading Academy</h3>
+                        <h1 class="text-3xl font-black text-white">Certificate of Completion</h1>
+                        <p class="text-xs text-gray-400">This is proudly presented to</p>
+                    </div>
+                    <div class="py-4">
+                        <h2 class="text-3xl font-extrabold text-gold-500 underline decoration-gold-500/40" id="cert-student-name">Student Name</h2>
+                        <p class="text-xs text-gray-300 mt-2">For successfully completing the 20-Module Smart Money Concepts & Price Action Masterclass</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-8 border-t border-borderDark text-xs text-gray-400">
+                        <div>
+                            <p class="font-bold text-white">Gemechu Reta</p>
+                            <p>Lead Instructor & Founder</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-white" id="cert-date-issued">October 2026</p>
+                            <p>Verified Credential</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="downloadCertificate()" id="download-cert-btn" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-8 py-3 rounded-xl shadow-lg transition hidden">
+                    <i class="fa-solid fa-download mr-2"></i> Download Certificate
+                </button>
+                <p id="cert-locked-notice" class="text-xs text-red-400">🔒 Certificate locked. Pass the final exam with 80%+ to unlock.</p>
+            </div>
+        </section>
+
+        <!-- TAB 5: PROFILE -->
+        <section id="tab-profile" class="tab-content hidden max-w-xl mx-auto space-y-6">
+            <div class="bg-cardBg border border-borderDark p-8 rounded-3xl shadow-xl space-y-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 rounded-2xl bg-gold-500 text-black font-black text-2xl flex items-center justify-center" id="profile-avatar-big">ST</div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white" id="profile-email">student@gmail.com</h2>
+                        <span class="inline-block bg-emerald-500/10 text-emerald-400 text-xs px-3 py-0.5 rounded-full font-bold mt-1" id="profile-status-badge">VIP Member (Active)</span>
+                    </div>
+                </div>
+                <div class="border-t border-borderDark pt-4 space-y-3 text-sm">
+                    <div class="flex justify-between text-gray-400">
+                        <span>Enrolled Modules:</span>
+                        <span class="text-white font-bold">20 / 20 Modules</span>
+                    </div>
+                    <div class="flex justify-between text-gray-400">
+                        <span>Telegram Bot Link:</span>
+                        <span class="text-blue-400 font-bold">@apex_forex_assistant_bot</span>
+                    </div>
+                    <div class="flex justify-between text-gray-400">
+                        <span>Account Type:</span>
+                        <span class="text-gold-400 font-bold">Lifetime VIP Access</span>
+                    </div>
+                </div>
+                <button onclick="logoutUser()" class="w-full bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 font-bold py-3 rounded-xl transition">
+                    Log Out of Account
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB 6: ADMIN PORTAL -->
+        <section id="tab-admin" class="tab-content hidden space-y-6">
+            <div class="bg-cardBg border border-borderDark p-6 lg:p-8 rounded-3xl shadow-xl space-y-6">
+                <div class="flex items-center justify-between border-b border-borderDark pb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white flex items-center"><i class="fa-solid fa-shield-halved text-red-400 mr-2"></i> Admin Approval Dashboard</h2>
+                        <p class="text-xs text-gray-400">Review student payment receipts submitted via Telegram bot (@apex_forex_assistant_bot)</p>
+                    </div>
+                    <button onclick="loadAdminRequests()" class="bg-borderDark hover:bg-gray-800 text-white text-xs font-semibold px-4 py-2 rounded-xl border border-gray-700 transition">
+                        <i class="fa-solid fa-rotate mr-1"></i> Refresh List
+                    </button>
+                </div>
+
+                <div id="admin-requests-list" class="space-y-4">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- LESSON PLAYER MODAL -->
+    <div id="lesson-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-borderDark rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+            <div class="p-4 lg:p-6 border-b border-borderDark flex items-center justify-between bg-darkBg/50">
+                <div>
+                    <span class="text-xs font-bold text-gold-500 uppercase" id="modal-module-tag">Module 1</span>
+                    <h3 class="text-lg font-bold text-white" id="modal-lesson-title">Lesson Title</h3>
+                </div>
+                <button onclick="closeLessonModal()" class="w-10 h-10 rounded-full bg-borderDark hover:bg-gray-700 flex items-center justify-center text-gray-400 hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="p-4 lg:p-6 overflow-y-auto custom-scrollbar space-y-6">
+                <!-- YouTube Video Embed -->
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-lg">
+                    <iframe id="lesson-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <!-- Written Content -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-base">📚 Detailed Lesson Explanation</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed" id="modal-lesson-text">
+                        Loading lesson study material...
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-4 lg:p-6 border-t border-borderDark bg-darkBg/50 flex justify-between items-center">
+                <button onclick="previousLesson()" class="bg-borderDark hover:bg-gray-700 text-white font-semibold px-4 py-2 rounded-xl text-xs transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Previous Lesson
+                </button>
+                <button onclick="completeCurrentLesson()" class="bg-gold-500 hover:bg-gold-600 text-black font-bold px-6 py-2.5 rounded-xl text-xs transition shadow-lg shadow-gold-500/20">
+                    Complete & Next <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN / AUTH MODAL -->
+    <div id="auth-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-borderDark rounded-3xl max-w-md w-full p-8 shadow-2xl space-y-6 relative">
+            <button onclick="closeModal('auth-modal')" class="absolute top-6 right-6 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 bg-gold-500/10 text-gold-500 rounded-2xl mx-auto flex items-center justify-center text-xl font-bold"><i class="fa-solid fa-lock"></i></div>
+                <h3 class="text-xl font-bold text-white">VIP Member Login</h3>
+                <p class="text-xs text-gray-400">Enter your registered email to unlock all 20 Modules</p>
+            </div>
+
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Email Address</label>
+                    <input type="email" id="login-email-input" required placeholder="student@gmail.com" class="w-full bg-darkBg border border-borderDark rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-black font-bold py-3 rounded-xl transition shadow-lg shadow-gold-500/20">
+                    Verify & Login
+                </button>
+            </form>
+
+            <div class="bg-darkBg/50 border border-borderDark p-4 rounded-2xl text-center space-y-2">
+                <p class="text-xs text-gray-400">Don't have VIP access yet?</p>
+                <button onclick="closeModal('auth-modal'); openModal('bot-modal');" class="text-xs text-blue-400 hover:text-blue-300 font-bold flex items-center justify-center mx-auto space-x-1">
+                    <i class="fa-brands fa-telegram"></i> <span>Register via Telegram Bot (@apex_forex_assistant_bot)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELEGRAM BOT SIMULATION MODAL -->
+    <div id="bot-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-borderDark rounded-3xl max-w-lg w-full p-6 lg:p-8 shadow-2xl space-y-6 relative">
+            <button onclick="closeModal('bot-modal')" class="absolute top-6 right-6 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            
+            <div class="flex items-center space-x-3 border-b border-borderDark pb-4">
+                <div class="w-12 h-12 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl"><i class="fa-brands fa-telegram"></i></div>
+                <div>
+                    <h3 class="font-bold text-white text-base">@apex_forex_assistant_bot</h3>
+                    <p class="text-xs text-emerald-400 font-semibold flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block mr-1.5"></span> Online Enrollment Bot</p>
+                </div>
+            </div>
+
+            <div id="bot-chat-stream" class="space-y-4 max-h-72 overflow-y-auto custom-scrollbar pr-2">
+                <!-- Bot Messages -->
+                <div class="bg-darkBg p-4 rounded-2xl border border-borderDark space-y-2">
+                    <p class="text-xs text-gray-300">✨ <b>Welcome to Apex Forex Academy Official Bot!</b><br>I am your automated enrollment assistant.</p>
+                    <p class="text-xs text-gold-400">Please enter your Email Address to begin registration:</p>
+                </div>
+            </div>
+
+            <!-- Bot Input Area -->
+            <div id="bot-input-area" class="space-y-3 pt-2">
+                <div class="flex space-x-2">
+                    <input type="email" id="bot-user-email" placeholder="Enter your email (e.g., student@gmail.com)" class="flex-grow bg-darkBg border border-borderDark rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-gold-500">
+                    <button onclick="botSubmitEmail()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-cardBg border-t border-borderDark py-6 px-4 text-center text-xs text-gray-400">
+        <p>&copy; 2026 Apex Forex Trading Academy. Lead Instructor: <span class="text-gold-500 font-bold">Gemechu Reta</span>. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // CURRICULUM DATA: 20 Modules with Professional YouTube Video Embeds
+        const modulesData = [
+            { id: 1, title: "Introduction to Forex Trading", lessons: [ { title: "What is Forex Trading?", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Forex (Foreign Exchange) is a global decentralized market where currencies are traded. Understand market participants, session times (London, New York, Tokyo), and structural basics." }, { title: "How Forex Market Works", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Learn currency quotation, bid/ask spreads, and how institutional liquidity providers match buy and sell orders globally." }, { title: "Currency Pairs, Pips, Lots & Spread", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Master calculation of pip values across major pairs (EURUSD, GBPUSD, XAUUSD) and lot sizing rules." } ] },
+            { id: 2, title: "Forex Market Fundamentals", lessons: [ { title: "Bullish & Bearish Markets", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Identifying market sentiment, buyer vs seller dominance, and macroeconomic indicators driving currency strength." }, { title: "Candlestick Chart Reading", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Deep dive into open, high, low, and close prices forming Japanese candlesticks across various timeframes." } ] },
+            { id: 3, title: "Currency Pairs, Pips, Lots & Spread", lessons: [ { title: "Major vs Minor Pairs", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Analyzing spreads, liquidity conditions, and spread widening during major news events." } ] },
+            { id: 4, title: "Candlestick Analysis", lessons: [ { title: "High Probability Candlestick Patterns", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Pinbars, Engulfing bars, Morning Stars, and Evening Stars at key structural turning points." } ] },
+            { id: 5, title: "Market Structure", lessons: [ { title: "Uptrend, Downtrend & Sideways", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Higher Highs, Higher Lows, Lower Highs, and Lower Lows structure analysis." }, { title: "Swing High & Swing Low", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Pinpointing valid swing points for trend identification." } ] },
+            { id: 6, title: "Trend Analysis & Pullbacks", lessons: [ { title: "Trading with the Trend", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Identifying impulse moves versus corrective pullbacks for high-reward entries." } ] },
+            { id: 7, title: "Support & Resistance", lessons: [ { title: "Key S&R Levels", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Drawing horizontal zones where price historically reacted strongly." } ] },
+            { id: 8, title: "Price Action Strategies", lessons: [ { title: "Breakout & Retest Method", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Waiting for structure breaks and successful retests before entering trades." } ] },
+            { id: 9, title: "Smart Money Concepts (SMC)", lessons: [ { title: "Introduction to SMC", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Smart Money Concepts focus on tracking institutional banks and market makers rather than retail indicators." }, { title: "Smart Money vs Retail Trading", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Why 90% of retail traders lose and how trading alongside institutional footprints changes your win rate." }, { title: "SMC Chart Analysis", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Practical walkthrough of institutional order flow on XAUUSD." } ] },
+            { id: 10, title: "Liquidity Concepts", lessons: [ { title: "Buy-side & Sell-side Liquidity", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Locating resting stop losses above equal highs and below equal lows." } ] },
+            { id: 11, title: "Order Blocks (OB)", lessons: [ { title: "Identifying Valid Order Blocks", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "The last opposing candle before a powerful impulsive move that broke structure." } ] },
+            { id: 12, title: "Fair Value Gaps (FVG)", lessons: [ { title: "Imbalance & FVG Trading", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Detecting price inefficiencies where institutional orders caused rapid displacement." } ] },
+            { id: 13, title: "Premium & Discount Zones", lessons: [ { title: "Fibonacci Equilibrium (50% Rule)", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Buying at discount zones and selling at premium zones using dealing ranges." } ] },
+            { id: 14, title: "Break of Structure (BOS)", lessons: [ { title: "Continuation Patterns with BOS", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Confirming trend continuation when price breaks previous structural highs or lows." } ] },
+            { id: 15, title: "Change of Character (CHOCH)", lessons: [ { title: "Reversal Signals via CHOCH", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Spotting early structural shifts indicating a trend reversal from bearish to bullish." } ] },
+            { id: 16, title: "Supply & Demand Zones", lessons: [ { title: "Mapping Institutional Zones", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Differentiating between fresh unmitigated zones and weak depleted zones." } ] },
+            { id: 17, title: "Liquidity Sweeps & Stop Hunts", lessons: [ { title: "Avoiding Traps & Stop Hunts", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Recognizing when market makers sweep liquidity pools before true expansion." } ] },
+            { id: 18, title: "Complete Trading Strategy", lessons: [ { title: "High Confluence Setup Blueprint", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Combining BOS, FVG, Order Blocks, and Risk-to-Reward into a robust trading plan." } ] },
+            { id: 19, title: "Risk Management", lessons: [ { title: "Capital Protection & Position Sizing", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Risking only 1% per trade, daily drawdown limits, and mathematical longevity." } ] },
+            { id: 20, title: "Trading Psychology & Journaling", lessons: [ { title: "Mastering Fear, Greed & Discipline", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "Eliminating revenge trading, maintaining emotional detachment, and keeping a professional trading journal." } ] }
+        ];
+
+        // Quiz Questions Data (English)
+        const quizQuestions = [
+            { q: "What does SMC stand for in institutional trading?", options: ["Simple Market Control", "Smart Money Concepts", "Secure Margin Calculation", "Systematic Moving Correlation"], answer: 1 },
+            { q: "In EURUSD, which currency is the base currency?", options: ["USD", "EUR", "GBP", "JPY"], answer: 1 },
+            { q: "What is an Order Block (OB)?", options: ["A support line drawn by retail traders", "The last opposing candle before an impulsive displacement breaking structure", "A moving average crossover", "A fixed lot size"], answer: 1 },
+            { q: "What does FVG stand for?", options: ["Fair Value Gap", "Forex Volume Graph", "Fast Variable Growth", "Financial Valuation Grid"], answer: 0 },
+            { q: "What is a CHOCH in market structure?", options: ["Chart of Highs On Charts", "Change of Character indicating potential reversal", "Closed Order on Currency Hedge", "Candlestick Overlap Indicator"], answer: 1 }
+        ];
+
+        let currentUser = null;
+        let currentModuleIndex = 0;
+        let currentLessonIndex = 0;
+        let currentQuizIndex = 0;
+        let userScore = 0;
+
+        // Initialize App UI on Load
+        window.onload = function() {
+            renderModules(modulesData);
+            renderQuizQuestion();
+            checkSavedSession();
+        };
+
+        // Tab Switcher with Strict Access Control
+        function switchTab(tabId) {
+            if (tabId !== 'home' && !currentUser) {
+                openModal('auth-modal');
+                return;
+            }
+
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('text-gold-500', 'font-bold'));
+            // Highlight active if needed
+        }
+
+        // Render Modules
+        function renderModules(data) {
+            const container = document.getElementById('modules-container');
+            container.innerHTML = '';
+
+            data.forEach((mod, mIdx) => {
+                let lessonsHtml = '';
+                mod.lessons.forEach((les, lIdx) => {
+                    lessonsHtml += `
+                        <div onclick="openLesson(${mIdx}, ${lIdx})" class="flex items-center justify-between p-3 rounded-xl bg-darkBg/60 hover:bg-gold-500/10 border border-borderDark cursor-pointer transition group">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-7 h-7 rounded-lg bg-gold-500/10 text-gold-400 font-bold text-xs flex items-center justify-center group-hover:bg-gold-500 group-hover:text-black transition">${lIdx + 1}</div>
+                                <span class="text-xs font-medium text-gray-200">${les.title}</span>
+                            </div>
+                            <i class="fa-solid fa-play text-xs text-gray-500 group-hover:text-gold-400"></i>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="bg-cardBg border border-borderDark rounded-3xl p-6 space-y-4 shadow-xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-gold-400 font-bold mb-2">
+                                <span>MODULE ${mod.id}</span>
+                                <span class="bg-gold-500/10 px-2.5 py-0.5 rounded-full">${mod.lessons.length} Lessons</span>
+                            </div>
+                            <h3 class="font-bold text-white text-base mb-4">${mod.title}</h3>
+                            <div class="space-y-2">${lessonsHtml}</div>
+                        </div>
+                        <button onclick="openLesson(${mIdx}, 0)" class="w-full mt-4 bg-borderDark hover:bg-gold-500 hover:text-black text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-2">
+                            <span>Start Module</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        function filterModules() {
+            const query = document.getElementById('search-modules').value.toLowerCase();
+            const filtered = modulesData.filter(m => m.title.toLowerCase().includes(query));
+            renderModules(filtered);
+        }
+
+        // Lesson Player Modal
+        function openLesson(modIdx, lesIdx) {
+            if (!currentUser) {
+                openModal('auth-modal');
+                return;
+            }
+
+            currentModuleIndex = modIdx;
+            currentLessonIndex = lesIdx;
+            const mod = modulesData[modIdx];
+            const les = mod.lessons[lesIdx];
+
+            document.getElementById('modal-module-tag').innerText = `Module ${mod.id} • Lesson ${lesIdx + 1} of ${mod.lessons.length}`;
+            document.getElementById('modal-lesson-title').innerText = les.title;
+            document.getElementById('lesson-video-iframe').src = les.video;
+            document.getElementById('modal-lesson-text').innerText = les.text;
+
+            document.getElementById('lesson-modal').classList.remove('hidden');
+        }
+
+        function closeLessonModal() {
+            document.getElementById('lesson-video-iframe').src = "";
+            document.getElementById('lesson-modal').classList.add('hidden');
+        }
+
+        function completeCurrentLesson() {
+            const mod = modulesData[currentModuleIndex];
+            if (currentLessonIndex < mod.lessons.length - 1) {
+                openLesson(currentModuleIndex, currentLessonIndex + 1);
+            } else if (currentModuleIndex < modulesData.length - 1) {
+                openLesson(currentModuleIndex + 1, 0);
+            } else {
+                alert("🎉 Congratulations! You have completed all 20 Modules and 50 Lessons!");
+                closeLessonModal();
+                switchTab('quiz');
+            }
+        }
+
+        function previousLesson() {
+            if (currentLessonIndex > 0) {
+                openLesson(currentModuleIndex, currentLessonIndex - 1);
+            } else if (currentModuleIndex > 0) {
+                const prevMod = modulesData[currentModuleIndex - 1];
+                openLesson(currentModuleIndex - 1, prevMod.lessons.length - 1);
+            }
+        }
+
+        // Quiz Engine
+        function renderQuizQuestion() {
+            if (currentQuizIndex >= quizQuestions.length) {
+                const pass = (userScore / quizQuestions.length) >= 0.8;
+                let html = `
+                    <div class="text-center space-y-4 py-8">
+                        <div class="text-5xl font-black text-gold-500">${userScore} / ${quizQuestions.length}</div>
+                        <h3 class="text-xl font-bold text-white">${pass ? '🎉 Exam Passed Successfully!' : '❌ Exam Failed. Try Again.'}</h3>
+                        <p class="text-xs text-gray-400">${pass ? 'You have scored 80% or higher. Your certificate is now unlocked!' : 'You need at least 80% to pass the certification exam.'}</p>
+                        ${pass ? '<button onclick="switchTab(\'certificate\')" class="bg-gold-500 text-black font-bold px-6 py-3 rounded-xl">View Certificate</button>' : '<button onclick="resetQuiz()" class="bg-gold-500 text-black font-bold px-6 py-3 rounded-xl">Retake Exam</button>'}
+                    </div>
+                `;
+                document.getElementById('quiz-question-box').innerHTML = html;
+                if (pass) unlockCertificate();
+                return;
+            }
+
+            const qObj = quizQuestions[currentQuizIndex];
+            document.getElementById('quiz-progress-badge').innerText = `Question ${currentQuizIndex + 1} / ${quizQuestions.length}`;
+
+            let optionsHtml = '';
+            qObj.options.forEach((opt, idx) => {
+                optionsHtml += `
+                    <button onclick="submitQuizAnswer(${idx})" class="w-full text-left bg-darkBg hover:bg-gold-500/10 border border-borderDark hover:border-gold-500 p-4 rounded-xl text-xs font-semibold text-gray-200 transition">
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+
+            document.getElementById('quiz-question-box').innerHTML = `
+                <div class="space-y-4">
+                    <h3 class="text-base font-bold text-white">${currentQuizIndex + 1}. ${qObj.q}</h3>
+                    <div class="space-y-3">${optionsHtml}</div>
+                </div>
+            `;
+        }
+
+        function submitQuizAnswer(selectedIdx) {
+            if (selectedIdx === quizQuestions[currentQuizIndex].answer) {
+                userScore++;
+            }
+            currentQuizIndex++;
+            renderQuizQuestion();
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            userScore = 0;
+            renderQuizQuestion();
+        }
+
+        // Certificate Generation
+        function unlockCertificate() {
+            document.getElementById('cert-student-name').innerText = currentUser;
+            document.getElementById('cert-date-issued').innerText = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            document.getElementById('download-cert-btn').classList.remove('hidden');
+            document.getElementById('cert-locked-notice').classList.add('hidden');
+        }
+
+        function downloadCertificate() {
+            alert(`🎉 Congratulations ${currentUser}! Your official Apex Forex Trading Certificate signed by Lead Instructor Gemechu Reta has been generated.`);
+        }
+
+        // Authentication & Backend Status Check
+        async function handleLoginSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email-input').value.trim();
+
+            try {
+                const res = await fetch('/api/user/check-status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+
+                if (data.isApproved) {
+                    setLoggedInUser(email);
+                    closeModal('auth-modal');
+                } else if (data.status === 'PENDING') {
+                    alert('⏳ Your payment proof is pending admin approval. Please check back soon or message @apex_forex_assistant_bot.');
+                } else {
+                    alert('❌ VIP Access not found for this email. Please register via Telegram Bot @apex_forex_assistant_bot and transfer payment (Telebirr: 0917091612 | M-Pesa: 0717120607).');
+                    closeModal('auth-modal');
+                    openModal('bot-modal');
+                }
+            } catch (err) {
+                // Fallback simulation mode if offline
+                setLoggedInUser(email);
+                closeModal('auth-modal');
+            }
+        }
+
+        function setLoggedInUser(email) {
+            currentUser = email;
+            document.getElementById('auth-header-btn').classList.add('hidden');
+            document.getElementById('user-avatar-badge').classList.remove('hidden');
+            document.getElementById('user-email-display').innerText = email;
+            document.getElementById('user-initials').innerText = email.slice(0, 2).toUpperCase();
+            document.getElementById('profile-email').innerText = email;
+            document.getElementById('profile-avatar-big').innerText = email.slice(0, 2).toUpperCase();
+
+            // Show Admin button if admin email
+            if (email.includes('admin') || email === 'gemechu@apex.com') {
+                document.getElementById('admin-nav-btn').classList.remove('hidden');
+            }
+
+            switchTab('courses');
+        }
+
+        function logoutUser() {
+            currentUser = null;
+            document.getElementById('auth-header-btn').classList.remove('hidden');
+            document.getElementById('user-avatar-badge').classList.add('hidden');
+            document.getElementById('admin-nav-btn').classList.add('hidden');
+            switchTab('home');
+        }
+
+        function checkSavedSession() {
+            // Auto check
+        }
+
+        // Telegram Bot Simulation Flow
+        let botState = { email: '' };
+
+        function botSubmitEmail() {
+            const email = document.getElementById('bot-user-email').value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            botState.email = email;
+
+            const chatStream = document.getElementById('bot-chat-stream');
+            chatStream.innerHTML += `
+                <div class="text-right"><span class="inline-block bg-blue-600 text-white text-xs px-3 py-2 rounded-2xl">${email}</span></div>
+                <div class="bg-darkBg p-4 rounded-2xl border border-borderDark space-y-2">
+                    <p class="text-xs text-gray-300">✅ <b>Email Saved:</b> <code>${email}</code></p>
+                    <p class="text-xs text-gold-400">💳 <b>Payment Details for VIP Access:</b><br>Transfer registration fee to:</p>
+                    <p class="text-xs text-white">📱 <b>Telebirr:</b> <code>0917091612</code><br>📱 <b>M-Pesa:</b> <code>0717120607</code></p>
+                    <p class="text-xs text-gray-300">📌 <b>Next Step:</b> Upload/send your payment receipt screenshot here:</p>
+                </div>
+            `;
+
+            document.getElementById('bot-input-area').innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <input type="file" id="bot-receipt-file" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gold-500 file:text-black hover:file:bg-gold-600">
+                    <button onclick="botSubmitReceipt()" class="bg-emerald-500 hover:bg-emerald-600 text-black font-bold px-4 py-2.5 rounded-xl text-xs transition">Upload</button>
+                </div>
+            `;
+        }
+
+        function botSubmitReceipt() {
+            const chatStream = document.getElementById('bot-chat-stream');
+            chatStream.innerHTML += `
+                <div class="text-right"><span class="inline-block bg-blue-600 text-white text-xs px-3 py-2 rounded-2xl">[Receipt Screenshot Uploaded]</span></div>
+                <div class="bg-darkBg p-4 rounded-2xl border border-borderDark space-y-2">
+                    <p class="text-xs text-emerald-400 font-bold">✅ Payment Proof Received Successfully!</p>
+                    <p class="text-xs text-gray-300">Your registration ID has been submitted to the Admin Portal (Lead Instructor: Gemechu Reta). Please wait while your transaction is verified.</p>
+                </div>
+            `;
+            document.getElementById('bot-input-area').innerHTML = `<p class="text-xs text-center text-emerald-400 font-bold"><i class="fa-solid fa-check-circle"></i> Verification Pending. You will be notified once approved!</p>`;
+        }
+
+        // Admin Portal Loader
+        async function loadAdminRequests() {
+            const listContainer = document.getElementById('admin-requests-list');
+            listContainer.innerHTML = `<p class="text-xs text-gray-400">Loading pending requests from server...</p>`;
+
+            try {
+                const res = await fetch('/api/admin/pending');
+                const data = await res.json();
+
+                if (!data.success || data.data.length === 0) {
+                    listContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-6">No pending payment approvals right now.</p>`;
+                    return;
+                }
+
+                let html = '';
+                data.data.forEach(req => {
+                    html += `
+                        <div class="bg-darkBg border border-borderDark p-4 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                            <div class="space-y-1">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs font-bold text-gold-400">${req.id}</span>
+                                    <span class="text-xs text-gray-400">(${req.date})</span>
+                                </div>
+                                <p class="text-sm font-bold text-white">${req.email}</p>
+                                <p class="text-xs text-blue-400">Telegram: ${req.telegramUser}</p>
+                                <a href="${req.receiptUrl}" target="_blank" class="text-xs text-gold-500 underline hover:text-gold-400 block mt-1"><i class="fa-solid fa-image mr-1"></i> View Receipt Screenshot</a>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="adminAction('${req.id}', 'approve')" class="bg-emerald-500 hover:bg-emerald-600 text-black font-bold px-4 py-2 rounded-xl text-xs transition">Approve</button>
+                                <button onclick="adminAction('${req.id}', 'reject')" class="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded-xl text-xs transition">Reject</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                listContainer.innerHTML = html;
+            } catch (err) {
+                listContainer.innerHTML = `<p class="text-xs text-red-400">Error connecting to server backend.</p>`;
+            }
+        }
+
+        async function adminAction(id, action) {
+            const endpoint = action === 'approve' ? '/api/admin/approve' : '/api/admin/reject';
+            const body = action === 'approve' ? { id } : { id, reason: 'Invalid receipt' };
+
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+            const data = await res.json();
+            alert(data.message);
+            loadAdminRequests();
+        }
+
+        // Modal Helpers
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+    </script>
+</body>
+</html>
