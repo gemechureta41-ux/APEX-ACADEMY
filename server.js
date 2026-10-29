@@ -32,6 +32,9 @@ let userSessions = {};
 let pendingApprovals = []; 
 let approvedUsers = new Set(); 
 
+// Pre-register Admin Email
+approvedUsers.add('gemechureta41@gmail.com');
+
 // --- TELEGRAM BOT LOGIC ---
 if (bot) {
     bot.onText(/\/start/, (msg) => {
@@ -58,7 +61,7 @@ if (bot) {
             session.email = text.trim().toLowerCase();
             session.step = 'AWAITING_PAYMENT_PROOF';
 
-            const paymentInstructions = `✅ *Email Saved:* \`${session.email}\`\n\n💳 *Payment Details for VIP Access:*\n\nChoose one of the following methods to transfer the registration fee:\n\n📱 *Telebirr:* \`0917091612\`\n📱 *M-Pesa:* \`0717120607\`\n\n📌 *Next Step:* After completing the payment, please upload/send the *Receipt Screenshot* or Transaction Document right here in this chat.`;
+            const paymentInstructions = `✅ *Email Saved:* \`${session.email}\`\n\n💳 *Payment Details for VIP Access:*\n\nChoose one of the following methods to transfer the registration fee:\n\n📱 *Telebirr:* \`0917091612\`\n📱 *M-Pesa:* \`0717120607\`\n\n📌 *Next Step:* After completing the payment, please send the *Receipt Screenshot* or Transaction Document right here in this chat.`;
             return bot.sendMessage(chatId, paymentInstructions, { parse_mode: 'Markdown' });
         }
 
@@ -72,7 +75,7 @@ if (bot) {
             }
 
             if (!photoFileId) {
-                return bot.sendMessage(chatId, '⚠️ Please upload an *Image (Screenshot)* or PDF receipt of your payment transaction.', { parse_mode: 'Markdown' });
+                return bot.sendMessage(chatId, '⚠️ Please send an *Image (Screenshot)* or PDF receipt of your payment transaction.', { parse_mode: 'Markdown' });
             }
 
             try {
@@ -91,7 +94,7 @@ if (bot) {
                 pendingApprovals.unshift(newRecord);
                 session.step = 'COMPLETED';
 
-                const pendingNotice = `✅ *Payment Proof Received!*\n\nYour enrollment details have been submitted to the Admin Portal.\n\n🆔 *Request ID:* \`${newRecord.id}\`\n📧 *Email:* \`${session.email}\`\n\n⏳ Please wait while the Admin verifies your transaction. You will receive an instant notification here once approved!`;
+                const pendingNotice = `✅ *Payment Proof Received!*\n\nYour enrollment details have been submitted to Lead Instructor Gemechu Reta.\n\n🆔 *Request ID:* \`${newRecord.id}\`\n📧 *Email:* \`${session.email}\`\n\n⏳ Please wait while Admin verifies your transaction. You will receive an instant notification here once approved!`;
                 bot.sendMessage(chatId, pendingNotice, { parse_mode: 'Markdown' });
 
             } catch (error) {
@@ -123,7 +126,7 @@ app.post('/api/admin/approve', (req, res) => {
     approvedUsers.add(record.email);
 
     if (bot) {
-        const approvalMessage = `🎉 *CONGRATULATIONS! YOUR VIP ACCESS IS APPROVED!* 🎉\n\nYour payment has been successfully verified by the Admin.\n\n🔑 You can now log in to the Apex Forex Academy platform with your email: \`${record.email}\` and access all 20 Premium Modules, SMC charts, quizzes, and certificates.`;
+        const approvalMessage = `🎉 *CONGRATULATIONS! YOUR VIP ACCESS IS APPROVED!* 🎉\n\nYour payment has been successfully verified by Lead Instructor Gemechu Reta.\n\n🔑 You can now log in to the platform with your email: \`${record.email}\` to access all 20 Modules and official certificate.`;
         bot.sendMessage(record.chatId, approvalMessage, { parse_mode: 'Markdown' });
     }
 
@@ -141,7 +144,7 @@ app.post('/api/admin/reject', (req, res) => {
     record.status = 'REJECTED';
 
     if (bot) {
-        const rejectionMessage = `❌ *PAYMENT VERIFICATION FAILED*\n\nYour payment submission (ID: \`${record.id}\`) could not be verified by the Admin.\n\n📝 *Reason:* ${reason || 'Invalid transaction screenshot or unconfirmed payment.'}\n\nPlease verify your payment receipt and restart the registration using /start.`;
+        const rejectionMessage = `❌ *PAYMENT VERIFICATION FAILED*\n\nYour payment submission (ID: \`${record.id}\`) could not be verified.\n\n📝 *Reason:* ${reason || 'Invalid transaction screenshot.'}\n\nPlease verify your receipt and restart the registration using /start.`;
         bot.sendMessage(record.chatId, rejectionMessage, { parse_mode: 'Markdown' });
     }
 
@@ -164,11 +167,11 @@ app.post('/api/user/check-status', (req, res) => {
     return res.json({ success: true, isApproved: false, status: 'NOT_REGISTERED' });
 });
 
-// CATCH-ALL ROUTE (Serves index.html for all frontend requests)
+// CATCH-ALL ROUTE
 app.get('*', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'), (err) => {
         if (err) {
-            res.status(500).send("Index.html file not found in public directory. Make sure index.html is placed inside public/ folder.");
+            res.status(500).send("Index.html file not found in public directory.");
         }
     });
 });
