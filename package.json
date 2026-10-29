@@ -1,7 +1,7 @@
 {
   "name": "apex-forex-academy",
   "version": "1.0.0",
-  "description": "Apex Forex Trading Masterclass Platform with Telegram Bot Integration",
+  "description": "Apex Forex Masterclass Platform",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,10 +11,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "multer": "^1.4.5-lts.1",
     "node-telegram-bot-api": "^0.66.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
   }
 }
